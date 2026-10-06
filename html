@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>For You ♡</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 50% 40%,
+                    #182b5c 0%,
+                    #0b1635 40%,
+                    #030817 100%
+                );
+
+            color: white;
+            font-family: Georgia, serif;
+        }
+
+
+        /* ⭐ BINTANG */
+
+        .stars {
+            position: fixed;
+            inset: 0;
+
+            background-image:
+                radial-gradient(
+                    white 1px,
+                    transparent 1px
+                ),
+                radial-gradient(
+                    #7891d8 1px,
+                    transparent 1px
+                );
+
+            background-size:
+                90px 90px,
+                150px 150px;
+
+            background-position:
+                10px 20px,
+                70px 80px;
+
+            opacity: 0.35;
+        }
+
+
+        /* HALAMAN */
+
+        .page {
+            position: relative;
+            z-index: 2;
+
+            height: 100vh;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+        }
+
+
+        /* 🧸 BERUANG */
+
+        .bear {
+            position: relative;
+
+            width: 170px;
+            height: 150px;
+
+            margin-bottom: 15px;
+
+            animation: floating 3s ease-in-out infinite;
+        }
+
+
+        /* kepala */
+
+        .head {
+            position: absolute;
+
+            width: 105px;
+            height: 90px;
+
+            left: 32px;
+            top: 20px;
+
+            background: #b98765;
+
+            border-radius: 50%;
+        }
+
+
+        /* telinga */
+
+        .ear {
+            position: absolute;
+
+            width: 38px;
+            height: 38px;
+
+            top: 5px;
+
+            background: #b98765;
+
+            border-radius: 50%;
+        }
+
+        .ear.left {
+            left: 25px;
+        }
+
+        .ear.right {
+            right: 25px;
+        }
+
+
+        /* mata */
+
+        .eye {
+            position: absolute;
+
+            width: 7px;
+            height: 9px;
+
+            top: 43px;
+
+            background: #19131a;
+
+            border-radius: 50%;
+        }
+
+        .eye.left {
+            left: 43px;
+        }
+
+        .eye.right {
+            right: 43px;
+        }
+
+
+        /* moncong */
+
+        .muzzle {
+            position: absolute;
+
+            width: 35px;
+            height: 25px;
+
+            left: 35px;
+            top: 53px;
+
+            background: #d7aa84;
+
+            border-radius: 50%;
+        }
+
+
+        .nose {
+            position: absolute;
+
+            width: 8px;
+            height: 6px;
+
+            left: 14px;
+            top: 6px;
+
+            background: #21151b;
+
+            border-radius: 50%;
+        }
+
+
+        /* badan */
+
+        .body {
+            position: absolute;
+
+            width: 82px;
+            height: 60px;
+
+            left: 44px;
+            top: 87px;
+
+            background: #a97756;
+
+            border-radius: 50%;
+        }
+
+
+        /* tangan */
+
+        .arm {
+            position: absolute;
+
+            width: 65px;
+            height: 18px;
+
+            top: 93px;
+
+            background: #b98765;
+
+            border-radius: 20px;
+        }
+
+
+        .arm.left {
+            left: 3px;
+
+            transform: rotate(28deg);
+        }
+
+
+        .arm.right {
+            right: 3px;
+
+            transform: rotate(-28deg);
+        }
+
+
+        /* animasi */
+
+        @keyframes floating {
+
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+
+        }
+
+
+        /* JUDUL */
+
+        h1 {
+            margin: 10px 0;
+
+            font-size: clamp(45px, 12vw, 75px);
+
+            font-weight: normal;
+
+            letter-spacing: 2px;
+        }
+
+
+        /* SUBTITLE */
+
+        .subtitle {
+            margin: 0;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 10px;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+
+            opacity: 0.55;
+        }
+
+
+        /* TOMBOL */
+
+        .open-button {
+            margin-top: 25px;
+
+            padding: 13px 28px;
+
+            border: 1px solid #6075b8;
+
+            border-radius: 50px;
+
+            background: rgba(15, 29, 65, 0.7);
+
+            color: white;
+
+            font-size: 13px;
+
+            letter-spacing: 1px;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+
+        .open-button:hover {
+            background: #1a2c5d;
+
+            transform: translateY(-2px);
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <div class="stars"></div>
+
+
+    <div class="page">
+
+        <!-- BERUANG -->
+
+        <div class="bear">
+
+            <div class="ear left"></div>
+
+            <div class="ear right"></div>
+
+
+            <div class="head">
+
+                <div class="eye left"></div>
+
+                <div class="eye right"></div>
+
+
+                <div class="muzzle">
+
+                    <div class="nose"></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="body"></div>
+
+
+            <div class="arm left"></div>
+
+            <div class="arm right"></div>
+
+        </div>
+
+
+        <!-- TEXT -->
+
+        <h1>for you.</h1>
+
+        <p class="subtitle">
+            a little something from me
+        </p>
+
+
+        <!-- BUTTON -->
+
+        <button
+            class="open-button"
+            onclick="openBook()">
+
+            open the book ♡
+
+        </button>
+
+    </div>
+
+
+    <script>
+
+        function openBook() {
+
+            alert(
+                "Halaman berikutnya nanti kita buat ♡"
+            );
+
+        }
+
+    </script>
+
+</body>
+  </html>
