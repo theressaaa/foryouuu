@@ -1,212 +1,754 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>For You ♡</title>
 
+
     <style>
+
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
+
         html,
         body {
-            margin: 0;
             width: 100%;
             height: 100%;
         }
 
+
         body {
+
             overflow: hidden;
+
             background: #070d20;
+
             font-family: Georgia, serif;
         }
 
+
+        /* =========================
+           COVER
+        ========================= */
+
         .cover {
+
+            position: relative;
+
             width: 100%;
             height: 100vh;
 
             display: flex;
+
             justify-content: center;
             align-items: center;
 
-            text-align: center;
+            overflow: hidden;
 
             background:
                 radial-gradient(
-                    circle,
-                    #293f6b,
-                    #172746 45%,
+                    circle at center 40%,
+                    #304873 0%,
+                    #1a2a4b 40%,
+                    #0d1832 70%,
                     #070d20 100%
                 );
         }
 
-        .content {
-            width: 100%;
-            padding: 25px;
+
+        /* =========================
+           BINTANG BACKGROUND
+        ========================= */
+
+        .stars {
+
+            position: absolute;
+
+            inset: 0;
+
+            pointer-events: none;
         }
 
-        .small {
-            color: #aebde0;
-            font-family: Arial, sans-serif;
+
+        .star {
+
+            position: absolute;
+
+            color: #dce7ff;
+
             font-size: 10px;
+
+            opacity: 0.5;
+
+            animation:
+                twinkle 3s ease-in-out infinite;
+        }
+
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+
+                opacity: 0.15;
+
+                transform:
+                    scale(0.7);
+            }
+
+
+            50% {
+
+                opacity: 0.9;
+
+                transform:
+                    scale(1.2);
+            }
+        }
+
+
+        /* =========================
+           CONTENT
+        ========================= */
+
+        .content {
+
+            position: relative;
+
+            z-index: 5;
+
+            width: 100%;
+
+            max-width: 430px;
+
+            padding: 25px;
+
+            text-align: center;
+
+            animation:
+                appear 1s ease;
+        }
+
+
+        @keyframes appear {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(20px);
+            }
+
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+        }
+
+
+        /* =========================
+           TEXT
+        ========================= */
+
+        .small {
+
+            color: #aebde0;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 9px;
+
             letter-spacing: 4px;
+
             text-transform: uppercase;
         }
 
+
         h1 {
-            margin: 10px 0 5px;
+
+            margin-top: 9px;
 
             color: #f8e9ef;
 
             font-size: 60px;
+
             font-weight: normal;
+
             font-style: italic;
+
+            letter-spacing: -2px;
+
+            text-shadow:
+                0 0 25px
+                rgba(220,230,255,0.15);
         }
+
 
         .subtitle {
+
+            margin-top: 7px;
+
             color: #bac8e4;
+
             font-size: 13px;
+
+            letter-spacing: 0.5px;
         }
 
-        .heart-box {
-            margin: 35px auto;
 
-            width: 140px;
-            height: 140px;
+        /* =========================
+           HEART AREA
+        ========================= */
 
-            animation: float 3s ease-in-out infinite;
+        .heart-area {
+
+            position: relative;
+
+            width: 240px;
+
+            height: 230px;
+
+            margin: 15px auto 10px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            animation:
+                floating 4s ease-in-out infinite;
         }
 
-        .heart {
-            width: 100%;
-            height: 100%;
-        }
 
-        @keyframes float {
-            0% {
-                transform: translateY(0);
+        @keyframes floating {
+
+            0%,
+            100% {
+
+                transform:
+                    translateY(0);
             }
+
 
             50% {
-                transform: translateY(-10px);
-            }
 
-            100% {
-                transform: translateY(0);
+                transform:
+                    translateY(-9px);
             }
         }
 
-        button {
-            padding: 13px 28px;
 
-            border: 1px solid #7183aa;
-            border-radius: 30px;
+        /* =========================
+           HEART
+        ========================= */
 
-            background: rgba(40, 60, 100, 0.7);
+        .heart {
+
+            width: 145px;
+
+            height: 145px;
+
+            filter:
+                drop-shadow(
+                    0 15px 22px
+                    rgba(0,0,0,0.25)
+                )
+                drop-shadow(
+                    0 0 28px
+                    rgba(245,160,195,0.25)
+                );
+
+            animation:
+                heartbeat 2.5s
+                ease-in-out infinite;
+        }
+
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+
+                transform:
+                    scale(1);
+            }
+
+
+            45% {
+
+                transform:
+                    scale(1.05);
+            }
+
+
+            55% {
+
+                transform:
+                    scale(1);
+            }
+        }
+
+
+        /* =========================
+           SPARKLE
+        ========================= */
+
+        .sparkle {
+
+            position: absolute;
+
+            color: #f8dce9;
+
+            text-shadow:
+                0 0 10px
+                rgba(255,220,235,0.8);
+
+            pointer-events: none;
+
+            animation:
+                sparkle 3s
+                ease-in-out infinite;
+        }
+
+
+        .s1 {
+
+            top: 28px;
+
+            left: 18px;
+
+            font-size: 22px;
+        }
+
+
+        .s2 {
+
+            top: 48px;
+
+            right: 17px;
+
+            font-size: 15px;
+
+            animation-delay: 0.7s;
+        }
+
+
+        .s3 {
+
+            bottom: 35px;
+
+            left: 35px;
+
+            font-size: 12px;
+
+            animation-delay: 1.2s;
+        }
+
+
+        .s4 {
+
+            bottom: 25px;
+
+            right: 30px;
+
+            font-size: 20px;
+
+            animation-delay: 1.8s;
+        }
+
+
+        .s5 {
+
+            top: 95px;
+
+            left: 3px;
+
+            font-size: 9px;
+
+            animation-delay: 2.2s;
+        }
+
+
+        .s6 {
+
+            top: 110px;
+
+            right: 2px;
+
+            font-size: 10px;
+
+            animation-delay: 1.5s;
+        }
+
+
+        @keyframes sparkle {
+
+            0%,
+            100% {
+
+                opacity: 0.2;
+
+                transform:
+                    scale(0.7)
+                    rotate(0deg);
+            }
+
+
+            50% {
+
+                opacity: 1;
+
+                transform:
+                    scale(1.3)
+                    rotate(12deg);
+            }
+        }
+
+
+        /* =========================
+           BUTTON
+        ========================= */
+
+        .open-btn {
+
+            padding:
+                13px 28px;
+
+            border:
+                1px solid
+                rgba(190,207,242,0.55);
+
+            border-radius: 50px;
+
+            background:
+                rgba(40,60,100,0.7);
 
             color: #f8eaf0;
 
+            font-family:
+                Arial, sans-serif;
+
             font-size: 13px;
+
             letter-spacing: 1px;
+
+            cursor: pointer;
+
+            transition:
+                0.3s ease;
         }
 
+
+        .open-btn:active {
+
+            transform:
+                scale(0.95);
+        }
+
+
+        .open-btn:hover {
+
+            background:
+                rgba(60,80,120,0.85);
+
+            box-shadow:
+                0 0 30px
+                rgba(170,190,240,0.2);
+        }
+
+
+        /* =========================
+           BOTTOM TEXT
+        ========================= */
+
         .bottom {
-            margin-top: 20px;
+
+            margin-top: 18px;
 
             color: #8294bc;
 
-            font-family: Arial, sans-serif;
+            font-family:
+                Arial, sans-serif;
+
             font-size: 9px;
+
             letter-spacing: 2px;
         }
+
+
+        /* =========================
+           HP LAYAR PENDEK
+        ========================= */
+
+        @media (max-height: 680px) {
+
+            .content {
+
+                transform:
+                    scale(0.85);
+            }
+        }
+
     </style>
+
 </head>
+
 
 <body>
 
-<div class="cover">
 
-    <div class="content">
+    <div class="cover">
 
-        <div class="small">
-            a little something
-        </div>
 
-        <h1>
-            for you ♡
-        </h1>
+        <!-- BINTANG -->
 
-        <div class="subtitle">
-            made with love, just for you.
+        <div
+            class="stars"
+            id="stars">
         </div>
 
 
-        <div class="heart-box">
+        <!-- SPARKLE -->
 
-            <svg
-                class="heart"
-                viewBox="0 0 200 200"
-                xmlns="http://www.w3.org/2000/svg">
+        <div class="sparkle s1">✦</div>
 
-                <defs>
+        <div class="sparkle s2">✧</div>
 
-                    <linearGradient
-                        id="pink"
-                        x1="0"
-                        y1="0"
-                        x2="1"
-                        y2="1">
+        <div class="sparkle s3">·</div>
 
-                        <stop
-                            offset="0%"
-                            stop-color="#ffdce9"/>
+        <div class="sparkle s4">✦</div>
 
-                        <stop
-                            offset="50%"
-                            stop-color="#f3a9c5"/>
+        <div class="sparkle s5">✧</div>
 
-                        <stop
-                            offset="100%"
-                            stop-color="#d7779d"/>
-
-                    </linearGradient>
-
-                </defs>
-
-                <path
-                    d="
-                    M100 175
-                    C85 155 25 120 25 65
-                    C25 35 48 20 70 25
-                    C87 29 96 42 100 55
-                    C104 42 113 29 130 25
-                    C152 20 175 35 175 65
-                    C175 120 115 155 100 175
-                    Z
-                    "
-                    fill="url(#pink)"
-                />
-
-            </svg>
-
-        </div>
+        <div class="sparkle s6">·</div>
 
 
-        <button>
-            open the book ♡
-        </button>
+        <!-- CONTENT -->
+
+        <div class="content">
 
 
-        <div class="bottom">
-            a tiny book full of love ✧
+            <div class="small">
+
+                a little something
+
+            </div>
+
+
+            <h1>
+
+                for you ♡
+
+            </h1>
+
+
+            <div class="subtitle">
+
+                made with love, just for you.
+
+            </div>
+
+
+            <!-- HEART -->
+
+            <div class="heart-area">
+
+
+                <svg
+                    class="heart"
+                    viewBox="0 0 200 200"
+                    xmlns="http://www.w3.org/2000/svg">
+
+
+                    <defs>
+
+                        <linearGradient
+                            id="pink"
+                            x1="0%"
+                            y1="0%"
+                            x2="100%"
+                            y2="100%">
+
+
+                            <stop
+                                offset="0%"
+                                stop-color="#ffdce9"/>
+
+
+                            <stop
+                                offset="50%"
+                                stop-color="#f3a9c5"/>
+
+
+                            <stop
+                                offset="100%"
+                                stop-color="#d7779d"/>
+
+
+                        </linearGradient>
+
+                    </defs>
+
+
+                    <path
+                        d="
+                        M100 175
+                        C85 155 25 120 25 65
+                        C25 35 48 20 70 25
+                        C87 29 96 42 100 55
+                        C104 42 113 29 130 25
+                        C152 20 175 35 175 65
+                        C175 120 115 155 100 175
+                        Z
+                        "
+
+                        fill="url(#pink)"
+                    />
+
+
+                    <!-- HEART SHINE -->
+
+                    <ellipse
+                        cx="65"
+                        cy="55"
+                        rx="9"
+                        ry="19"
+
+                        fill="#ffffff"
+
+                        opacity="0.3"
+
+                        transform="
+                            rotate(-35 65 55)
+                        "
+                    />
+
+
+                </svg>
+
+
+            </div>
+
+
+            <!-- BUTTON -->
+
+            <button
+                class="open-btn"
+                onclick="openBook()">
+
+                open the book ♡
+
+            </button>
+
+
+            <div class="bottom">
+
+                a tiny book full of love ✧
+
+            </div>
+
+
         </div>
 
     </div>
 
-</div>
+
+    <script>
+
+
+        /* =========================
+           BUAT BINTANG RANDOM
+        ========================= */
+
+        const starContainer =
+            document.getElementById("stars");
+
+
+        for (
+            let i = 0;
+            i < 70;
+            i++
+        ) {
+
+
+            const star =
+                document.createElement("span");
+
+
+            star.className =
+                "star";
+
+
+            star.textContent =
+                Math.random() > 0.7
+                ? "✧"
+                : "·";
+
+
+            star.style.left =
+                Math.random() * 100 + "%";
+
+
+            star.style.top =
+                Math.random() * 100 + "%";
+
+
+            star.style.fontSize =
+                (
+                    6 +
+                    Math.random() * 10
+                ) + "px";
+
+
+            star.style.animationDelay =
+                Math.random() * 4 + "s";
+
+
+            star.style.animationDuration =
+                (
+                    2 +
+                    Math.random() * 4
+                ) + "s";
+
+
+            starContainer.appendChild(star);
+
+        }
+
+
+        /* =========================
+           BUTTON SEMENTARA
+        ========================= */
+
+        function openBook() {
+
+            alert(
+                "the book is waiting for you ♡"
+            );
+
+        }
+
+
+    </script>
+
 
 </body>
+
 </html>
