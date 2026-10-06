@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,905 +7,853 @@
 <title>for you ♡</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-html,body{
-    width:100%;
-    height:100%;
-    overflow:hidden;
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 
-body{
-    font-family:Georgia,"Times New Roman",serif;
-    background:#030718;
-    color:white;
+body {
+    background: #020513;
+    color: #fff;
+    font-family: Georgia, "Times New Roman", serif;
 }
 
-/* =========================
-   BACKGROUND
-========================= */
-
-.screen{
-    position:fixed;
-    inset:0;
-    overflow:hidden;
-
+.screen {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
     background:
-        radial-gradient(
-            circle at 50% 40%,
-            #17265d 0%,
-            #0d1743 35%,
-            #060b28 70%,
-            #020514 100%
-        );
+        radial-gradient(circle at 50% 40%,
+        #18265d 0%, #101b49 32%, #070d2e 65%, #020513 100%);
 }
 
-.stars{
-    position:absolute;
-    inset:0;
-    pointer-events:none;
+.stars {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
 }
 
-.star{
-    position:absolute;
-    width:2px;
-    height:2px;
-    border-radius:50%;
-    background:white;
-    animation:twinkle 3s ease-in-out infinite;
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background: #fff;
+    animation: twinkle 3s ease-in-out infinite;
 }
 
-@keyframes twinkle{
-    0%,100%{
-        opacity:.2;
+@keyframes twinkle {
+    0%, 100% { opacity: .15; transform: scale(.7); }
+    50% { opacity: 1; transform: scale(1.3); }
+}
+
+/* COVER */
+
+.cover {
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: opacity .8s ease, transform .8s ease;
+}
+
+.cover.hide {
+    opacity: 0;
+    transform: scale(1.05);
+    pointer-events: none;
+}
+
+.cover-title {
+    position: relative;
+    z-index: 4;
+    font-size: 44px;
+    font-weight: normal;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.cover-subtitle {
+    position: relative;
+    z-index: 4;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 1.2px;
+    opacity: .68;
+}
+
+/* HEART */
+
+.heart-area {
+    position: relative;
+    width: 225px;
+    height: 225px;
+    margin: 26px 0 27px;
+    z-index: 4;
+}
+
+.heart {
+    position: absolute;
+    width: 165px;
+    height: 165px;
+    left: 30px;
+    top: 30px;
+    animation: floating 3s ease-in-out infinite,
+               heartbeat 2.1s ease-in-out infinite;
+    filter: drop-shadow(0 0 30px rgba(255,95,165,.5));
+}
+
+@keyframes floating {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-9px); }
+}
+
+@keyframes heartbeat {
+    0%, 100% { scale: 1; }
+    15% { scale: 1.07; }
+    30% { scale: 1; }
+    45% { scale: 1.045; }
+    60% { scale: 1; }
+}
+
+/* SPARKLES */
+
+.spark {
+    position: absolute;
+    color: #ffd8eb;
+    text-shadow: 0 0 12px rgba(255,180,220,.8);
+    animation: sparkle 2.5s ease-in-out infinite;
+}
+
+.s1 { left: 10px; top: 32px; font-size: 21px; }
+.s2 { right: 17px; top: 8px; font-size: 15px; animation-delay: .4s; }
+.s3 { right: 0; bottom: 45px; font-size: 21px; animation-delay: .9s; }
+.s4 { left: 18px; bottom: 18px; font-size: 13px; animation-delay: 1.4s; }
+.s5 { left: 0; top: 105px; font-size: 10px; animation-delay: .7s; }
+.s6 { right: 35px; top: 78px; font-size: 9px; animation-delay: 1.8s; }
+.s7 { left: 53px; top: 0; font-size: 9px; animation-delay: 2s; }
+.s8 { right: 8px; top: 128px; font-size: 10px; animation-delay: 1.1s; }
+
+@keyframes sparkle {
+    0%, 100% {
+        opacity: .2;
+        transform: scale(.8) rotate(0deg);
     }
-
-    50%{
-        opacity:1;
-    }
-}
-
-
-/* =========================
-   COVER
-========================= */
-
-.cover{
-    z-index:20;
-
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-
-    text-align:center;
-
-    transition:
-        opacity .8s ease,
-        transform .8s ease;
-}
-
-.cover.hide{
-    opacity:0;
-    transform:scale(1.05);
-    pointer-events:none;
-}
-
-.cover h1{
-    position:relative;
-    z-index:3;
-
-    font-size:43px;
-    font-weight:normal;
-    letter-spacing:2px;
-
-    margin-bottom:10px;
-}
-
-.subtitle{
-    position:relative;
-    z-index:3;
-
-    font-family:Arial,sans-serif;
-    font-size:12px;
-    letter-spacing:1px;
-
-    opacity:.7;
-}
-
-
-/* =========================
-   HEART
-========================= */
-
-.heart-area{
-    position:relative;
-
-    width:210px;
-    height:210px;
-
-    margin:32px 0 30px;
-
-    z-index:3;
-}
-
-.heart{
-    position:absolute;
-
-    width:155px;
-    height:155px;
-
-    left:27px;
-    top:27px;
-
-    animation:
-        floating 3s ease-in-out infinite,
-        heartbeat 2.1s ease-in-out infinite;
-
-    filter:
-        drop-shadow(
-            0 0 27px
-            rgba(255,100,170,.45)
-        );
-}
-
-@keyframes floating{
-    0%,100%{
-        transform:translateY(0);
-    }
-
-    50%{
-        transform:translateY(-9px);
+    50% {
+        opacity: 1;
+        transform: scale(1.25) rotate(15deg);
     }
 }
 
-@keyframes heartbeat{
-    0%,100%{
-        scale:1;
-    }
+/* OPEN BUTTON */
 
-    15%{
-        scale:1.07;
-    }
-
-    30%{
-        scale:1;
-    }
-
-    45%{
-        scale:1.045;
-    }
-
-    60%{
-        scale:1;
-    }
+.open-button {
+    position: relative;
+    z-index: 5;
+    padding: 13px 26px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 30px;
+    background: rgba(255,255,255,.06);
+    color: #fff;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: .3s;
 }
 
-
-/* =========================
-   COVER SPARKLES
-========================= */
-
-.spark{
-    position:absolute;
-
-    color:#ffd9ec;
-
-    text-shadow:
-        0 0 10px
-        rgba(255,180,220,.7);
-
-    animation:
-        sparkle 2.5s
-        ease-in-out
-        infinite;
+.open-button:hover {
+    background: rgba(255,255,255,.13);
+    transform: translateY(-2px);
 }
 
-.spark1{
-    top:30px;
-    left:18px;
-    font-size:20px;
+.cover-footer {
+    position: absolute;
+    bottom: 21px;
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    letter-spacing: 1px;
+    opacity: .35;
 }
 
-.spark2{
-    top:10px;
-    right:25px;
-    font-size:13px;
+/* BOOK */
 
-    animation-delay:.5s;
+.book {
+    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .7s ease;
 }
 
-.spark3{
-    right:5px;
-    bottom:50px;
-    font-size:20px;
-
-    animation-delay:1s;
+.book.show {
+    opacity: 1;
+    pointer-events: auto;
 }
 
-.spark4{
-    left:22px;
-    bottom:25px;
-    font-size:12px;
-
-    animation-delay:1.4s;
+.page {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    opacity: 0;
+    transform: translateX(30px) scale(.985);
+    pointer-events: none;
+    transition: opacity .5s ease, transform .5s ease;
 }
 
-.spark5{
-    left:0;
-    top:100px;
-    font-size:10px;
-
-    animation-delay:.8s;
+.page.active {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
 }
 
-.spark6{
-    right:38px;
-    top:78px;
-    font-size:9px;
+/* LETTER CARD */
 
-    animation-delay:1.8s;
-}
-
-.spark7{
-    left:50px;
-    top:2px;
-    font-size:8px;
-
-    animation-delay:2s;
-}
-
-@keyframes sparkle{
-    0%,100%{
-        opacity:.25;
-        transform:
-            scale(.8)
-            rotate(0);
-    }
-
-    50%{
-        opacity:1;
-        transform:
-            scale(1.25)
-            rotate(15deg);
-    }
-}
-
-
-/* =========================
-   BUTTON
-========================= */
-
-.open-button{
-    position:relative;
-    z-index:3;
-
-    padding:13px 25px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.3);
-
-    border-radius:30px;
-
-    background:
-        rgba(255,255,255,.06);
-
-    color:white;
-
-    font-family:Arial,sans-serif;
-    font-size:12px;
-    letter-spacing:1px;
-
-    cursor:pointer;
-
-    backdrop-filter:blur(10px);
-
-    transition:.3s;
-}
-
-.open-button:hover{
-    background:
-        rgba(255,255,255,.13);
-
-    transform:translateY(-2px);
-}
-
-.cover-footer{
-    position:absolute;
-
-    bottom:22px;
-
-    font-family:Arial,sans-serif;
-    font-size:10px;
-    letter-spacing:1px;
-
-    opacity:.4;
-}
-
-
-/* =========================
-   BOOK
-========================= */
-
-.book{
-    z-index:10;
-
-    opacity:0;
-    pointer-events:none;
-
-    transition:opacity .6s ease;
-}
-
-.book.show{
-    opacity:1;
-    pointer-events:auto;
-}
-
-
-/* =========================
-   PAGE
-========================= */
-
-.book-page{
-    position:absolute;
-    inset:0;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    padding:22px;
-
-    opacity:0;
-    transform:
-        translateX(25px)
-        scale(.985);
-
-    pointer-events:none;
-
-    transition:
-        opacity .5s ease,
-        transform .5s ease;
-}
-
-.book-page.active{
-    opacity:1;
-    transform:none;
-    pointer-events:auto;
-}
-
-.page{
-    position:relative;
-
-    width:min(650px,94vw);
-    height:min(760px,90vh);
-
-    overflow:hidden;
-
-    border:
-        1px solid
-        rgba(190,205,255,.15);
-
-    border-radius:18px;
-
-    background:
-        radial-gradient(
-            circle at 50% 20%,
-            rgba(29,48,112,.7),
-            rgba(8,15,48,.9) 55%,
-            rgba(3,7,27,.96)
-        );
-
+.letter-card {
+    position: relative;
+    width: min(570px, 91vw);
+    height: min(620px, 76vh);
+    overflow: hidden;
+    border: 1px solid rgba(196,210,255,.17);
+    border-radius: 24px;
+    background: linear-gradient(145deg,
+        rgba(22,37,91,.72), rgba(5,12,39,.78));
     box-shadow:
-        0 25px 90px
-        rgba(0,0,0,.5),
-
-        inset 0 0 80px
-        rgba(100,120,220,.08);
+        0 30px 100px rgba(0,0,0,.45),
+        inset 0 0 60px rgba(120,140,255,.06);
+    backdrop-filter: blur(12px);
 }
 
-.page-content{
-    position:relative;
-    z-index:3;
-
-    width:100%;
-    height:100%;
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-
-    text-align:center;
-
-    padding:
-        57px 42px 75px;
+.letter-card::before {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    top: -80px;
+    right: -70px;
+    background: rgba(100,130,255,.12);
+    filter: blur(25px);
+    pointer-events: none;
 }
 
-.page-number{
-    position:absolute;
-
-    top:24px;
-    left:29px;
-
-    font-family:Arial,sans-serif;
-    font-size:9px;
-    letter-spacing:2px;
-
-    opacity:.4;
+.letter-card::after {
+    content: "";
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    bottom: -80px;
+    left: -60px;
+    background: rgba(255,105,175,.08);
+    filter: blur(25px);
+    pointer-events: none;
 }
 
-.chapter{
-    font-family:Arial,sans-serif;
-
-    font-size:9px;
-    letter-spacing:3px;
-
-    text-transform:uppercase;
-
-    opacity:.43;
-
-    margin-bottom:17px;
+.page-number {
+    position: absolute;
+    z-index: 5;
+    top: 20px;
+    left: 24px;
+    font-family: Arial, sans-serif;
+    font-size: 8px;
+    letter-spacing: 2px;
+    opacity: .35;
 }
 
-.page h2{
-    font-size:34px;
-    font-weight:normal;
-    line-height:1.15;
+/* BIRTHDAY PAGE */
+
+.birthday-content {
+    position: relative;
+    z-index: 4;
+    height: 100%;
+    padding: 65px 48px 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
-.divider{
-    width:42px;
-    height:1px;
-
-    margin:23px auto 26px;
-
-    background:
-        rgba(255,255,255,.6);
-
-    opacity:.4;
+.birthday-content h1 {
+    font-size: 38px;
+    line-height: 1.12;
+    font-weight: normal;
+    letter-spacing: .5px;
 }
 
-.page-text{
-    max-width:470px;
-
-    font-family:Arial,sans-serif;
-
-    font-size:13px;
-    line-height:1.85;
-
-    color:
-        rgba(255,255,255,.84);
+.small-line {
+    margin-top: 14px;
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    opacity: .42;
 }
 
-.page-text p{
-    margin-bottom:20px;
+.divider {
+    width: 42px;
+    height: 1px;
+    margin: 22px 0 25px;
+    background: rgba(255,255,255,.65);
+    opacity: .45;
 }
 
-
-/* =========================
-   PAGE 02 BUBBLES
-========================= */
-
-.bubbles{
-    position:absolute;
-    inset:0;
-
-    overflow:hidden;
-
-    pointer-events:none;
-
-    z-index:1;
+.message {
+    max-width: 420px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.85;
+    color: rgba(255,255,255,.84);
 }
 
-.bubble{
-    position:absolute;
-
-    bottom:-40px;
-
-    color:#ff91bd;
-
-    opacity:0;
-
-    font-family:Arial,sans-serif;
-
-    filter:
-        drop-shadow(
-            0 0 8px
-            rgba(255,100,170,.25)
-        );
-
-    animation:
-        bubble-rise
-        linear
-        infinite;
+.message p {
+    margin-bottom: 19px;
 }
 
-@keyframes bubble-rise{
+.moon {
+    position: absolute;
+    z-index: 2;
+    right: 32px;
+    top: 31px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.82);
+    box-shadow: 0 0 20px rgba(210,225,255,.25);
+}
 
-    0%{
-        transform:
-            translateY(0)
-            scale(.7)
-            rotate(0);
+.moon::after {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    top: -7px;
+    left: 9px;
+    background: #0a1238;
+}
 
-        opacity:0;
+.constellation {
+    position: absolute;
+    z-index: 2;
+    top: 75px;
+    left: 35px;
+    width: 90px;
+    height: 70px;
+    opacity: .35;
+}
+
+.constellation span {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 7px rgba(255,255,255,.6);
+}
+
+.constellation span:nth-child(1) { left: 5px; top: 40px; }
+.constellation span:nth-child(2) { left: 32px; top: 15px; }
+.constellation span:nth-child(3) { left: 57px; top: 28px; }
+.constellation span:nth-child(4) { left: 78px; top: 5px; }
+
+.constellation::before {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 1px;
+    top: 32px;
+    left: 4px;
+    background: rgba(255,255,255,.25);
+    transform: rotate(-18deg);
+}
+
+/* FLOATING HEARTS */
+
+.love-bubbles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.bubble {
+    position: absolute;
+    bottom: -40px;
+    color: #ff8fba;
+    opacity: 0;
+    filter: drop-shadow(0 0 8px rgba(255,100,170,.3));
+    animation: bubbleRise linear infinite;
+}
+
+@keyframes bubbleRise {
+    0% {
+        transform: translateY(0) scale(.7) rotate(0deg);
+        opacity: 0;
     }
-
-    12%{
-        opacity:.3;
-    }
-
-    50%{
-        opacity:.55;
-    }
-
-    85%{
-        opacity:.2;
-    }
-
-    100%{
-        transform:
-            translateY(-820px)
-            scale(1.15)
-            rotate(18deg);
-
-        opacity:0;
+    12% { opacity: .25; }
+    50% { opacity: .5; }
+    85% { opacity: .18; }
+    100% {
+        transform: translateY(-750px) scale(1.15) rotate(18deg);
+        opacity: 0;
     }
 }
 
+/* PAGE 02 — REBALANCED LAYOUT */
 
-/* =========================
-   NAVIGATION
-========================= */
-
-.navigation{
-    position:absolute;
-
-    left:0;
-    right:0;
-    bottom:24px;
-
-    z-index:10;
-
-    display:flex;
-    justify-content:space-between;
-
-    padding:0 29px;
+.forget-content {
+    position: relative;
+    z-index: 4;
+    width: 100%;
+    height: 100%;
+    padding: 48px 28px 62px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
-.navigation button{
-    border:none;
-    background:none;
-
-    color:white;
-
-    font-family:Arial,sans-serif;
-
-    font-size:10px;
-    letter-spacing:1.2px;
-
-    opacity:.5;
-
-    cursor:pointer;
-
-    transition:.25s;
+.forget-title {
+    font-size: 34px;
+    font-weight: normal;
+    line-height: 1.15;
 }
 
-.navigation button:hover{
-    opacity:1;
-    transform:translateY(-2px);
+.forget-subtitle {
+    margin-top: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    opacity: .4;
 }
 
-.navigation .hidden{
-    opacity:0;
-    pointer-events:none;
+.reminders {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: 25px;
 }
 
+.reminder {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.45;
+    color: rgba(255,255,255,.87);
+    animation: gentleFloat 4s ease-in-out infinite;
+}
 
-/* =========================
-   MOBILE
-========================= */
+.reminder:nth-child(2) { animation-delay: .5s; }
+.reminder:nth-child(3) { animation-delay: 1s; }
+.reminder:nth-child(4) { animation-delay: 1.5s; }
 
-@media(max-width:600px){
+@keyframes gentleFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
 
-    .cover h1{
-        font-size:34px;
+/* BEAR — NOW PART OF THE CONTENT */
+
+.bear {
+    position: relative;
+    flex: 0 0 70px;
+    width: 62px;
+    height: 70px;
+    margin-top: 15px;
+    opacity: .9;
+    z-index: 3;
+    animation: bearBob 3s ease-in-out infinite;
+}
+
+@keyframes bearBob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+.bear-head {
+    position: absolute;
+    width: 45px;
+    height: 40px;
+    left: 8px;
+    top: 6px;
+    border-radius: 45% 45% 42% 42%;
+    background: #d4a77e;
+    box-shadow: inset 0 -5px 0 rgba(130,80,50,.1);
+}
+
+.bear-ear {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #c28f68;
+    top: 1px;
+}
+
+.bear-ear.left { left: 5px; }
+.bear-ear.right { right: 5px; }
+
+.bear-eye {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #352319;
+    top: 21px;
+}
+
+.bear-eye.left { left: 13px; }
+.bear-eye.right { right: 13px; }
+
+.bear-muzzle {
+    position: absolute;
+    width: 17px;
+    height: 12px;
+    border-radius: 50%;
+    left: 14px;
+    top: 26px;
+    background: #efd0a9;
+}
+
+.bear-nose {
+    position: absolute;
+    width: 5px;
+    height: 4px;
+    border-radius: 50%;
+    left: 20px;
+    top: 29px;
+    background: #4a2d25;
+}
+
+.bear-body {
+    position: absolute;
+    width: 35px;
+    height: 25px;
+    left: 13px;
+    top: 41px;
+    border-radius: 50% 50% 30% 30%;
+    background: #d4a77e;
+}
+
+.final-line {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    margin-top: 9px;
+    font-size: 19px;
+    font-style: italic;
+    line-height: 1.4;
+    color: #ffd8eb;
+    text-shadow: 0 0 18px rgba(255,120,180,.22);
+}
+
+/* NAVIGATION */
+
+.navigation {
+    position: absolute;
+    z-index: 8;
+    left: 0;
+    right: 0;
+    bottom: 21px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 25px;
+}
+
+.navigation button {
+    border: none;
+    background: none;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 1.2px;
+    opacity: .58;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.navigation button:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+    .cover-title { font-size: 35px; }
+    .cover-subtitle { font-size: 10px; }
+
+    .heart-area {
+        width: 190px;
+        height: 190px;
     }
 
-    .subtitle{
-        font-size:10px;
+    .heart {
+        width: 140px;
+        height: 140px;
+        left: 25px;
+        top: 25px;
     }
 
-    .heart-area{
-        width:180px;
-        height:180px;
-        margin:28px 0;
+    .letter-card {
+        width: 90vw;
+        height: 69vh;
+        border-radius: 21px;
     }
 
-    .heart{
-        width:135px;
-        height:135px;
-        left:23px;
-        top:23px;
+    .birthday-content {
+        padding: 55px 27px 65px;
     }
 
-    .page{
-        height:88vh;
+    .birthday-content h1 { font-size: 31px; }
+
+    .message {
+        font-size: 12px;
+        line-height: 1.7;
     }
 
-    .page-content{
-        padding:
-            52px 25px 70px;
+    .message p { margin-bottom: 15px; }
+
+    .forget-content {
+        padding: 48px 22px 60px;
     }
 
-    .page h2{
-        font-size:28px;
+    .forget-title { font-size: 29px; }
+
+    .forget-subtitle {
+        margin-top: 9px;
+        font-size: 9px;
     }
 
-    .page-text{
-        font-size:12px;
-        line-height:1.7;
+    .reminders {
+        margin-top: 22px;
+        gap: 11px;
     }
 
-    .page-text p{
-        margin-bottom:15px;
+    .reminder {
+        font-size: 12px;
+        line-height: 1.4;
     }
 
-    .navigation{
-        padding:0 22px;
-        bottom:21px;
+    .bear {
+        margin-top: 12px;
+        flex-basis: 66px;
+        height: 66px;
+        transform: scale(.9);
+        transform-origin: top center;
     }
+
+    .final-line {
+        margin-top: 5px;
+        font-size: 17px;
+    }
+
+    .moon { right: 24px; }
+    .constellation { left: 20px; }
+}
+
+/* SMALL PHONE HEIGHTS */
+
+@media (max-height: 650px) {
+    .forget-content {
+        padding-top: 40px;
+        padding-bottom: 52px;
+    }
+
+    .forget-title { font-size: 27px; }
+    .forget-subtitle { margin-top: 7px; }
+    .reminders { margin-top: 15px; gap: 8px; }
+    .reminder { font-size: 12px; }
+    .bear { margin-top: 7px; flex-basis: 59px; height: 59px; }
+    .final-line { margin-top: 2px; font-size: 16px; }
 }
 </style>
 </head>
 
-
 <body>
 
-
-<!-- =========================
-     COVER
-========================= -->
+<!-- COVER -->
 
 <section class="screen cover" id="cover">
-
     <div class="stars" id="coverStars"></div>
 
-
-    <h1>
-        for you ♡
-    </h1>
-
-    <div class="subtitle">
-        made with love, from your love.
-    </div>
-
+    <h1 class="cover-title">for you ♡</h1>
+    <div class="cover-subtitle">made with love, from your love.</div>
 
     <div class="heart-area">
+        <span class="spark s1">✦</span>
+        <span class="spark s2">✧</span>
+        <span class="spark s3">✦</span>
+        <span class="spark s4">✧</span>
+        <span class="spark s5">·</span>
+        <span class="spark s6">·</span>
+        <span class="spark s7">✦</span>
+        <span class="spark s8">✧</span>
 
-        <span class="spark spark1">✦</span>
-        <span class="spark spark2">✧</span>
-        <span class="spark spark3">✦</span>
-        <span class="spark spark4">✧</span>
-        <span class="spark spark5">·</span>
-        <span class="spark spark6">·</span>
-        <span class="spark spark7">✦</span>
-
-
-        <svg
-            class="heart"
-            viewBox="0 0 200 200">
-
+        <svg class="heart" viewBox="0 0 200 200">
             <defs>
-
-                <linearGradient
-                    id="heartGradient"
-                    x1="0%"
-                    y1="0%"
-                    x2="100%"
-                    y2="100%">
-
-                    <stop
-                        offset="0%"
-                        stop-color="#ff9dcc"/>
-
-                    <stop
-                        offset="55%"
-                        stop-color="#ff72ae"/>
-
-                    <stop
-                        offset="100%"
-                        stop-color="#ff477f"/>
-
+                <linearGradient id="heartGradient"
+                    x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ff9dcc"/>
+                    <stop offset="55%" stop-color="#ff72ae"/>
+                    <stop offset="100%" stop-color="#ff477f"/>
                 </linearGradient>
-
             </defs>
 
+            <path d="M100 170 C84 154 30 120 30 70 C30 40 50 25 73 25 C87 25 97 32 100 45 C103 32 113 25 127 25 C150 25 170 40 170 70 C170 120 116 154 100 170Z"
+                fill="url(#heartGradient)"/>
 
-            <path
-                d="
-                M100 170
-                C84 154 30 120 30 70
-                C30 40 50 25 73 25
-                C87 25 97 32 100 45
-                C103 32 113 25 127 25
-                C150 25 170 40 170 70
-                C170 120 116 154 100 170Z
-                "
-                fill="url(#heartGradient)"
-            />
-
-
-            <ellipse
-                cx="75"
-                cy="58"
-                rx="17"
-                ry="8"
+            <ellipse cx="75" cy="58" rx="17" ry="8"
                 fill="rgba(255,255,255,.3)"
-                transform="rotate(-25 75 58)"
-            />
-
+                transform="rotate(-25 75 58)"/>
         </svg>
-
     </div>
 
-
-    <button
-        class="open-button"
-        onclick="openBook()">
-
+    <button class="open-button" onclick="openBook()">
         open the book ♡
-
     </button>
 
-
-    <div class="cover-footer">
-        a tiny book full of love ✧
-    </div>
-
+    <div class="cover-footer">a tiny book full of love ✧</div>
 </section>
 
+<!-- BOOK -->
 
-
-<!-- =========================
-     BOOK
-========================= -->
-
-<section
-    class="screen book"
-    id="book">
-
+<section class="screen book" id="book">
 
     <!-- PAGE 01 -->
 
-    <div
-        class="book-page active"
-        id="page1">
+    <div class="page active" id="page1">
+        <div class="letter-card">
+            <div class="page-number">01</div>
+            <div class="moon"></div>
 
-        <div class="page">
+            <div class="constellation">
+                <span></span><span></span><span></span><span></span>
+            </div>
 
-            <div class="page-content">
+            <div class="love-bubbles" id="bubbles1"></div>
 
-                <div class="page-number">
-                    01
-                </div>
-
-                <div class="chapter">
-                    chapter one
-                </div>
-
-                <h2>
-                    so, this is<br>
-                    for you.
-                </h2>
-
+            <div class="birthday-content">
+                <h1>happy birthday,<br>my love ♡</h1>
+                <div class="small-line">a little wish for you</div>
                 <div class="divider"></div>
 
-
-                <div class="page-text">
-
+                <div class="message">
                     <p>
-                        a little something i made
-                        just because you're you.
+                        i hope this new age brings good things
+                        your way, one by one.
                     </p>
 
                     <p>
-                        nothing too big,
-                        just a tiny place filled
-                        with things i want you to know.
+                        i hope you always have reasons to smile,
+                        the courage to go after what you want,
+                        and people around you who make you feel loved.
                     </p>
-
                 </div>
-
             </div>
-
 
             <div class="navigation">
-
-                <button class="hidden">
-                    ← previous
-                </button>
-
-                <button onclick="showPage(2)">
-                    next page →
-                </button>
-
+                <button onclick="showPage(0)">← previous</button>
+                <button onclick="showPage(2)">next page →</button>
             </div>
-
         </div>
-
     </div>
-
-
 
     <!-- PAGE 02 -->
 
-    <div
-        class="book-page"
-        id="page2">
+    <div class="page" id="page2">
+        <div class="letter-card">
+            <div class="page-number">02</div>
+            <div class="love-bubbles" id="bubbles2"></div>
+            <div class="moon"></div>
 
-        <div class="page">
+            <div class="forget-content">
+                <h2 class="forget-title">if you ever forget...</h2>
 
+                <div class="forget-subtitle">
+                    come back to this page ♡
+                </div>
 
-            <!-- LOVE BUBBLES -->
+                <div class="reminders">
+                    <div class="reminder">you are loved. ♡</div>
+                    <div class="reminder">you are never alone.</div>
+                    <div class="reminder">
+                        you always have a place to come home to.
+                    </div>
+                    <div class="reminder">
+                        and i'll always be here to listen.
+                    </div>
+                </div>
 
-            <div
-                class="bubbles"
-                id="loveBubbles">
+                <!-- Bear now sits with the message -->
+                <div class="bear">
+                    <div class="bear-ear left"></div>
+                    <div class="bear-ear right"></div>
+
+                    <div class="bear-head">
+                        <div class="bear-eye left"></div>
+                        <div class="bear-eye right"></div>
+                        <div class="bear-muzzle"></div>
+                        <div class="bear-nose"></div>
+                    </div>
+
+                    <div class="bear-body"></div>
+                </div>
+
+                <div class="final-line">
+                    you'll always have<br>
+                    a home in me. ♡
+                </div>
             </div>
 
+            <div class="navigation">
+                <button onclick="showPage(1)">← previous</button>
+                <button onclick="showPage(3)">next page →</button>
+            </div>
+        </div>
+    </div>
 
-            <div class="page-content">
+    <!-- PAGE 03 -->
 
-                <div class="page-number">
-                    02
-                </div>
+    <div class="page" id="page3">
+        <div class="letter-card">
+            <div class="page-number">03</div>
+            <div class="love-bubbles" id="bubbles3"></div>
 
-                <div class="chapter">
-                    chapter two
-                </div>
-
-                <h2>
-                    happy birthday,<br>
-                    my love ♡
-                </h2>
-
+            <div class="birthday-content">
+                <h1>one more thing ♡</h1>
                 <div class="divider"></div>
 
-
-                <div class="page-text">
-
-                    <p>
-                        i hope this new age brings
-                        good things your way, one by one.
-                        i hope you always have reasons
-                        to smile, the courage to go after
-                        what you want, and people around
-                        you who make you feel loved.
-                    </p>
-
-
+                <div class="message">
                     <p>
                         i hope this year is kinder to you.
                         more happy days,
                         less things that make you tired,
-                        and more moments you'll look back
-                        on with a smile.
+                        and more moments you'll look back on with a smile.
                     </p>
-
 
                     <p>
-                        and if someday things get
-                        a little too much,
-                        please remember that you don't
-                        have to go through it alone.
+                        and if someday things get a little too much,
+                        please remember that you don't have to go
+                        through it alone.
                     </p>
-
 
                     <p>
                         you have me.
@@ -914,249 +863,36 @@ body{
                         or anything that's been bothering you.
                     </p>
 
-
                     <p>
                         i might not always know what to say,
-                        and i might not always know how
-                        to make things better,
+                        and i might not always know how to make things better,
                         but i'll always be here to listen.
                     </p>
 
-
                     <p>
-                        so whenever you need someone
-                        to talk to, someone to stay,
+                        so whenever you need someone to talk to,
+                        someone to stay,
                         or just a place to rest for a while,
                         you can always come to me.
                     </p>
 
-
-                    <p
-                        style="
-                        font-family:Georgia,serif;
-                        font-style:italic;
-                        font-size:16px;
-                        margin-top:5px;
-                        "
-                    >
+                    <p class="home-line">
                         i hope you know that you'll always
                         have a home in me. ♡
                     </p>
-
                 </div>
-
             </div>
-
 
             <div class="navigation">
-
-                <button onclick="showPage(1)">
-                    ← previous
-                </button>
-
-                <button onclick="showPage(3)">
-                    next page →
-                </button>
-
+                <button onclick="showPage(2)">← previous</button>
+                <button onclick="showPage(0)">back to cover ♡</button>
             </div>
-
         </div>
-
-    </div>
-
-
-
-    <!-- PAGE 03 TEMPORARY -->
-
-    <div
-        class="book-page"
-        id="page3">
-
-        <div class="page">
-
-            <div class="page-content">
-
-                <div class="page-number">
-                    03
-                </div>
-
-                <div class="chapter">
-                    chapter three
-                </div>
-
-                <h2>
-                    more for you ♡
-                </h2>
-
-                <div class="divider"></div>
-
-                <div class="page-text">
-
-                    <p>
-                        this page is waiting
-                        for the next part.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="navigation">
-
-                <button onclick="showPage(2)">
-                    ← previous
-                </button>
-
-                <button class="hidden">
-                    next page →
-                </button>
-
-            </div>
-
-        </div>
-
     </div>
 
 </section>
 
-
-
 <script>
+/* STARS */
 
-/* =========================
-   STARS
-========================= */
-
-function createStars(container,count){
-
-    for(let i=0;i<count;i++){
-
-        const star =
-            document.createElement("span");
-
-        star.className =
-            "star";
-
-        star.style.left =
-            Math.random()*100 + "%";
-
-        star.style.top =
-            Math.random()*100 + "%";
-
-        star.style.animationDelay =
-            Math.random()*3 + "s";
-
-        star.style.transform =
-            "scale(" +
-            (Math.random()*.9+.5) +
-            ")";
-
-        container.appendChild(star);
-    }
-}
-
-createStars(
-    document.getElementById("coverStars"),
-    90
-);
-
-
-/* =========================
-   LOVE BUBBLES
-========================= */
-
-const bubbleContainer =
-    document.getElementById("loveBubbles");
-
-
-for(let i=0;i<24;i++){
-
-    const bubble =
-        document.createElement("span");
-
-    bubble.className =
-        "bubble";
-
-    bubble.textContent =
-        Math.random() > .35
-        ? "♡"
-        : "♥";
-
-    bubble.style.left =
-        Math.random()*100 + "%";
-
-    bubble.style.fontSize =
-        (Math.random()*14+8) + "px";
-
-    bubble.style.animationDuration =
-        (Math.random()*7+8) + "s";
-
-    bubble.style.animationDelay =
-        Math.random()*10 + "s";
-
-    bubbleContainer.appendChild(
-        bubble
-    );
-}
-
-
-/* =========================
-   OPEN BOOK
-========================= */
-
-function openBook(){
-
-    document
-        .getElementById("cover")
-        .classList.add("hide");
-
-    setTimeout(function(){
-
-        document
-            .getElementById("book")
-            .classList.add("show");
-
-    },400);
-}
-
-
-/* =========================
-   PAGE NAVIGATION
-========================= */
-
-function showPage(number){
-
-    const pages =
-        document.querySelectorAll(
-            ".book-page"
-        );
-
-    pages.forEach(function(page){
-
-        page.classList.remove(
-            "active"
-        );
-
-    });
-
-
-    const selected =
-        document.getElementById(
-            "page" + number
-        );
-
-    if(selected){
-
-        selected.classList.add(
-            "active"
-        );
-
-    }
-
-}
-
-</script>
-
-</body>
-</html>
+cons
