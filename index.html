@@ -8,20 +8,22 @@
 
 <style>
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
-    min-height: 100vh;
+    width: 100%;
+    height: 100vh;
     overflow: hidden;
     background: #070d20;
-    color: white;
     font-family: Georgia, serif;
 }
 
-/* ===== BACKGROUND ===== */
+/* =========================
+   BACKGROUND
+========================= */
 
 .cover {
     position: relative;
@@ -30,66 +32,77 @@ body {
     height: 100svh;
 
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
-    text-align: center;
     overflow: hidden;
 
     background:
         radial-gradient(
             circle at 50% 45%,
-            #1d315b 0%,
-            #101d3b 35%,
+            #24385f 0%,
+            #142342 35%,
             #070d20 78%
         );
 }
 
-/* ===== STARS ===== */
+/* =========================
+   STARS
+========================= */
 
 .stars {
     position: absolute;
     inset: 0;
+    overflow: hidden;
     pointer-events: none;
 }
 
 .star {
     position: absolute;
     color: #dce7ff;
-    opacity: 0.6;
-    animation: twinkle 3s ease-in-out infinite;
+    font-size: 10px;
+    opacity: .5;
+
+    animation:
+        twinkle 3s ease-in-out infinite;
 }
 
 @keyframes twinkle {
+
     0%, 100% {
-        opacity: 0.2;
-        transform: scale(0.8);
+        opacity: .2;
+        transform: scale(.8);
     }
 
     50% {
-        opacity: 0.9;
+        opacity: .9;
         transform: scale(1.2);
     }
 }
 
-/* ===== CONTENT ===== */
+/* =========================
+   CONTENT
+========================= */
 
 .content {
     position: relative;
-    z-index: 2;
+    z-index: 5;
 
     width: 100%;
     max-width: 430px;
 
-    padding: 25px 20px;
+    padding: 20px;
 
-    animation: fadeUp 1.2s ease;
+    text-align: center;
+
+    animation: fadeIn 1.2s ease;
 }
 
-@keyframes fadeUp {
+@keyframes fadeIn {
+
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(18px);
     }
 
     to {
@@ -98,150 +111,453 @@ body {
     }
 }
 
-/* ===== SMALL TEXT ===== */
+/* =========================
+   TEXT
+========================= */
 
-.top-text {
-    margin-bottom: 8px;
+.small-title {
+    margin-bottom: 7px;
 
     font-family: Arial, sans-serif;
-    font-size: 10px;
+    font-size: 9px;
     letter-spacing: 4px;
+
     text-transform: uppercase;
 
-    color: #aabbe5;
+    color: #aebde0;
 }
 
-/* ===== TITLE ===== */
-
 h1 {
-    font-size: clamp(45px, 13vw, 68px);
+    color: #f7e9ef;
+
+    font-size: clamp(46px, 13vw, 68px);
     font-weight: normal;
     font-style: italic;
 
     letter-spacing: -2px;
-
-    color: #f7e8ef;
-
-    text-shadow:
-        0 0 25px rgba(180, 200, 255, 0.15);
 }
 
-.subtext {
-    margin-top: 8px;
+.subtitle {
+    margin-top: 7px;
 
-    font-size: 14px;
-    letter-spacing: 1px;
+    color: #b9c7e5;
 
-    color: #b9c8e8;
+    font-size: 13px;
+    letter-spacing: .7px;
 }
 
-/* ===== BEAR ===== */
+/* =========================
+   TEDDY BEAR
+========================= */
 
-.bear-container {
-    width: min(72vw, 300px);
-    height: min(72vw, 300px);
+.bear-area {
+    position: relative;
 
-    margin: 8px auto 14px;
+    width: 250px;
+    height: 250px;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: 12px auto 10px;
 
-    animation: bearFloat 4s ease-in-out infinite;
+    animation: floating 4s ease-in-out infinite;
 }
 
-.bear-container img {
-    width: 100%;
-    height: 100%;
+@keyframes floating {
 
-    object-fit: contain;
-
-    display: block;
-
-    filter:
-        drop-shadow(0 15px 25px rgba(0,0,0,0.4));
-}
-
-/* Kalau gambar belum ada */
-.bear-fallback {
-    display: none;
-
-    font-size: 115px;
-}
-
-@keyframes bearFloat {
     0%, 100% {
         transform: translateY(0);
     }
 
     50% {
-        transform: translateY(-8px);
+        transform: translateY(-7px);
     }
 }
 
-/* ===== BUTTON ===== */
+/* HEAD */
 
-.open-button {
-    padding: 14px 28px;
+.head {
+    position: absolute;
 
-    border: 1px solid rgba(180, 200, 240, 0.55);
+    width: 145px;
+    height: 130px;
+
+    left: 52px;
+    top: 15px;
+
+    border-radius: 48% 48% 46% 46%;
+
+    background:
+        radial-gradient(
+            circle at 38% 30%,
+            #b9825d,
+            #89583d 65%,
+            #70452f
+        );
+
+    box-shadow:
+        inset -7px -8px 0 rgba(70,40,25,.15),
+        0 8px 14px rgba(0,0,0,.2);
+
+    z-index: 4;
+}
+
+/* EARS */
+
+.ear {
+    position: absolute;
+
+    width: 47px;
+    height: 47px;
+
+    top: 3px;
+
+    border-radius: 50%;
+
+    background: #805039;
+
+    box-shadow:
+        inset 5px 5px 0 rgba(190,130,90,.3);
+}
+
+.ear.left {
+    left: 38px;
+}
+
+.ear.right {
+    right: 38px;
+}
+
+/* INNER EARS */
+
+.ear::after {
+    content: "";
+
+    position: absolute;
+
+    width: 25px;
+    height: 25px;
+
+    left: 11px;
+    top: 11px;
+
+    border-radius: 50%;
+
+    background: #a96f50;
+}
+
+/* FACE */
+
+.eye {
+    position: absolute;
+
+    width: 11px;
+    height: 13px;
+
+    top: 54px;
+
+    border-radius: 50%;
+
+    background: #241811;
+}
+
+.eye.left {
+    left: 43px;
+}
+
+.eye.right {
+    right: 43px;
+}
+
+/* EYE SHINE */
+
+.eye::after {
+    content: "";
+
+    position: absolute;
+
+    width: 3px;
+    height: 3px;
+
+    top: 2px;
+    left: 2px;
+
+    border-radius: 50%;
+
+    background: #fff;
+}
+
+/* MUZZLE */
+
+.muzzle {
+    position: absolute;
+
+    width: 57px;
+    height: 43px;
+
+    left: 44px;
+    top: 68px;
+
+    border-radius: 50%;
+
+    background: #c58b68;
+}
+
+.nose {
+    position: absolute;
+
+    width: 14px;
+    height: 10px;
+
+    left: 21px;
+    top: 9px;
+
+    border-radius: 50%;
+
+    background: #332018;
+}
+
+.mouth {
+    position: absolute;
+
+    width: 15px;
+    height: 9px;
+
+    left: 21px;
+    top: 18px;
+
+    border-bottom: 2px solid #44291f;
+    border-radius: 0 0 50% 50%;
+}
+
+/* BODY */
+
+.body {
+    position: absolute;
+
+    width: 112px;
+    height: 105px;
+
+    left: 69px;
+    top: 125px;
+
+    border-radius: 48% 48% 40% 40%;
+
+    background:
+        radial-gradient(
+            circle at 35% 25%,
+            #b9825d,
+            #89583d 68%,
+            #70452f
+        );
+
+    box-shadow:
+        inset -7px -9px 0 rgba(70,40,25,.14),
+        0 9px 13px rgba(0,0,0,.18);
+
+    z-index: 2;
+}
+
+/* BELLY */
+
+.belly {
+    position: absolute;
+
+    width: 65px;
+    height: 61px;
+
+    left: 23px;
+    top: 25px;
+
+    border-radius: 50%;
+
+    background: #b87955;
+
+    opacity: .8;
+}
+
+/* =========================
+   ARMS
+========================= */
+
+.arm {
+    position: absolute;
+
+    width: 38px;
+    height: 62px;
+
+    top: 137px;
+
+    border-radius: 45%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #9b6547,
+            #784a34
+        );
+
+    z-index: 3;
+}
+
+/* KIRI */
+
+.arm.left {
+    left: 45px;
+
+    transform:
+        rotate(18deg);
+}
+
+/* KANAN */
+
+.arm.right {
+    right: 45px;
+
+    transform:
+        rotate(-18deg);
+}
+
+/* PAWS */
+
+.arm::after {
+    content: "";
+
+    position: absolute;
+
+    width: 31px;
+    height: 25px;
+
+    bottom: -7px;
+    left: 3px;
+
+    border-radius: 50%;
+
+    background: #a96e4e;
+}
+
+/* =========================
+   LEGS
+========================= */
+
+.leg {
+    position: absolute;
+
+    width: 47px;
+    height: 42px;
+
+    top: 207px;
+
+    border-radius: 45% 45% 50% 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #9b6547,
+            #73462f
+        );
+
+    z-index: 1;
+}
+
+.leg.left {
+    left: 65px;
+
+    transform: rotate(4deg);
+}
+
+.leg.right {
+    right: 65px;
+
+    transform: rotate(-4deg);
+}
+
+/* FOOT PADS */
+
+.leg::after {
+    content: "";
+
+    position: absolute;
+
+    width: 31px;
+    height: 22px;
+
+    left: 8px;
+    bottom: 2px;
+
+    border-radius: 50%;
+
+    background: #a96e4e;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.open-btn {
+    border: 1px solid rgba(180,200,240,.55);
+
     border-radius: 50px;
 
-    background: rgba(35, 52, 88, 0.65);
+    padding: 13px 27px;
 
     color: #f8eaf0;
+
+    background: rgba(35,52,88,.65);
 
     font-size: 13px;
     letter-spacing: 1px;
 
     cursor: pointer;
 
-    transition:
-        transform 0.3s ease,
-        background 0.3s ease,
-        box-shadow 0.3s ease;
+    transition: .3s ease;
 }
 
-.open-button:hover {
+.open-btn:hover {
+
     transform: translateY(-3px);
 
-    background: rgba(58, 79, 121, 0.8);
+    background: rgba(60,80,120,.8);
 
     box-shadow:
-        0 0 30px rgba(170, 190, 240, 0.18);
+        0 0 30px rgba(170,190,240,.18);
 }
 
-.open-button:active {
-    transform: scale(0.96);
+.open-btn:active {
+    transform: scale(.96);
 }
 
-/* ===== BOTTOM TEXT ===== */
+/* =========================
+   BOTTOM
+========================= */
 
-.bottom-text {
-    margin-top: 20px;
+.bottom {
+    margin-top: 18px;
+
+    color: #8294bc;
 
     font-family: Arial, sans-serif;
+
     font-size: 9px;
     letter-spacing: 2px;
-
-    color: #8495bd;
 }
 
-/* ===== HP KECIL ===== */
+/* =========================
+   SMALL SCREEN
+========================= */
 
 @media (max-height: 700px) {
 
     .content {
-        transform: scale(0.88);
+        transform: scale(.86);
     }
 
-    .bear-container {
-        margin-top: 0;
-        margin-bottom: 8px;
+    .bear-area {
+        margin-top: 4px;
+        margin-bottom: 4px;
     }
 }
 </style>
 </head>
+
 
 <body>
 
@@ -250,9 +566,10 @@ h1 {
     <!-- BINTANG -->
     <div class="stars" id="stars"></div>
 
+
     <div class="content">
 
-        <div class="top-text">
+        <div class="small-title">
             a little something
         </div>
 
@@ -260,55 +577,66 @@ h1 {
             for you ♡
         </h1>
 
-        <div class="subtext">
+        <div class="subtitle">
             made with love, just for you.
         </div>
 
 
-        <!-- =========================
-             BERUANG + MAWAR
-             ========================= -->
+        <!-- =====================
+             TEDDY BEAR
+        ====================== -->
 
-        <div class="bear-container">
+        <div class="bear-area">
 
-            <!--
-                GANTI bear.png DENGAN
-                GAMBAR BERUANG REFERENSI LU
+            <!-- EARS -->
+            <div class="ear left"></div>
+            <div class="ear right"></div>
 
-                File:
-                bear.png
-            -->
+            <!-- HEAD -->
+            <div class="head">
 
-            <img
-                src="bear.png"
-                alt="cute teddy bear holding a rose"
-                onerror="
-                    this.style.display='none';
-                    document.getElementById('fallback').style.display='block';
-                "
-            >
+                <div class="eye left"></div>
+                <div class="eye right"></div>
 
-            <div
-                class="bear-fallback"
-                id="fallback"
-            >
-                🧸🌹
+                <div class="muzzle">
+                    <div class="nose"></div>
+                    <div class="mouth"></div>
+                </div>
+
             </div>
+
+
+            <!-- ARMS -->
+            <div class="arm left"></div>
+            <div class="arm right"></div>
+
+
+            <!-- BODY -->
+            <div class="body">
+
+                <div class="belly"></div>
+
+            </div>
+
+
+            <!-- LEGS -->
+            <div class="leg left"></div>
+            <div class="leg right"></div>
 
         </div>
 
 
-        <!-- TOMBOL -->
+        <!-- BUTTON -->
 
         <button
-            class="open-button"
+            class="open-btn"
             onclick="openBook()"
         >
             open the book ♡
         </button>
 
 
-        <div class="bottom-text">
+        <div class="bottom">
             a tiny book full of love ✧
         </div>
 
@@ -321,18 +649,20 @@ h1 {
 
 /* =========================
    RANDOM STARS
-   ========================= */
+========================= */
 
-const stars = document.getElementById("stars");
+const starContainer =
+    document.getElementById("stars");
 
 for (let i = 0; i < 65; i++) {
 
-    const star = document.createElement("span");
+    const star =
+        document.createElement("span");
 
-    star.classList.add("star");
+    star.className = "star";
 
-    star.innerHTML =
-        Math.random() > 0.75
+    star.textContent =
+        Math.random() > .75
         ? "✧"
         : "·";
 
@@ -343,34 +673,32 @@ for (let i = 0; i < 65; i++) {
         Math.random() * 100 + "%";
 
     star.style.fontSize =
-        (7 + Math.random() * 12) + "px";
+        (7 + Math.random() * 11) + "px";
 
     star.style.animationDelay =
         Math.random() * 4 + "s";
 
-    star.style.animationDuration =
-        (2 + Math.random() * 4) + "s";
-
-    stars.appendChild(star);
+    starContainer.appendChild(star);
 }
 
 
 /* =========================
-   OPEN THE BOOK
-   ========================= */
+   OPEN BOOK
+========================= */
 
 function openBook() {
 
     /*
-        NANTI BAGIAN INI
-        DISAMBUNGKAN KE HALAMAN
-        DIGITAL LOVE BOOK LU.
+       NANTI KALAU HALAMAN BUKUNYA
+       SUDAH DIBUAT, GANTI MENJADI:
 
-        Contoh kalau bukunya
-        ada di book.html:
+       window.location.href = "book.html";
+
+       Untuk sekarang belum melakukan
+       apa-apa karena kita fokus cover dulu.
     */
 
-    window.location.href = "book.html";
+    alert("The book is waiting for you ♡");
 }
 
 </script>
