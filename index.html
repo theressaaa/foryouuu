@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for you ♡</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0b1120;
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Tombol Musik Kanan Atas */
+        .music-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 182, 193, 0.4);
+            padding: 8px 16px;
+            border-radius: 20px;
+            color: #ffd1dc;
+            font-size: 0.75rem;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 0 15px rgba(255, 182, 193, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .music-btn.playing {
+            border-color: rgba(255, 182, 193, 0.8);
+            box-shadow: 0 0 20px rgba(255, 182, 193, 0.5);
+            background: rgba(255, 182, 193, 0.2);
+        }
+
+        /* Latar Belakang Bintang */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(1.5px 1.5px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 40px 70px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 90px 40px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 160px 120px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(1.5px 1.5px at 230px 190px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 300px 300px, #ffffff, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 350px 350px;
+            opacity: 0.6;
+            z-index: 1;
+        }
+
+        /* Halaman & Kartu */
+        .page {
+            display: none;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 420px;
+            padding: 20px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .page.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Style Tampilan Cover */
+        .cover-container {
+            text-align: center;
+            width: 100%;
+            padding: 20px 0;
+        }
+
+        .sub-header {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            color: #94a3b8;
+            margin-bottom: 8px;
+        }
+
+        .title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            font-style: italic;
+            font-weight: 400;
+            margin-bottom: 4px;
+        }
+
+        .heart {
+            font-style: normal;
+            color: #ffb6c1;
+        }
+
+        .tagline {
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            letter-spacing: 0.5px;
+            margin-bottom: 25px;
+        }
+
+        .image-wrapper {
+            position: relative;
+            margin: 10px auto 30px auto;
+            width: 220px;
+            height: 240px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .glow {
+            position: absolute;
+            width: 170px;
+            height: 170px;
+            background: rgba(255, 182, 193, 0.35);
+            border-radius: 50%;
+            filter: blur(35px);
+            z-index: 1;
+        }
+
+        .bear-img {
+            position: relative;
+            z-index: 2;
+            width: auto;
+            max-width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
+            animation: float 3.5s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .btn-open {
+            display: inline-block;
+            padding: 12px 36px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 25px;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin-bottom: 25px;
+        }
+
+        .btn-open:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 182, 193, 0.5);
+        }
+
+        .footer-note {
+            font-size: 0.65rem;
+            color: #64748b;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        /* Style Kartu Buku */
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 30px 24px 20px 24px;
+            width: 100%;
+            position: relative;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+
+        .moon-icon {
+            font-size: 1.2rem;
+            color: #e2e8f0;
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            text-align: center;
+            margin-bottom: 4px;
+        }
+
+        .card-subtitle {
+            font-size: 0.7rem;
+            color: #94a3b8;
+            text-align: center;
+            letter-spacing: 1.5px;
+            margin-bottom: 25px;
+        }
+
+        .card-content {
+            font-size: 0.82rem;
+            line-height: 1.7;
+            color: #cbd5e1;
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .card-content p {
+            margin-bottom: 16px;
+        }
+
+        .highlight-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #ffffff;
+            margin: 20px 0;
+            line-height: 1.4;
+        }
+
+        .small-bear {
+            width: 70px;
+            height: auto;
+            margin: 10px auto;
+            display: block;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        }
+
+        /* Navigasi */
+        .card-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            color: #64748b;
+            font-size: 0.75rem;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            padding: 5px 10px;
+        }
+
+        .nav-btn:hover {
+            color: #ffb6c1;
+        }
+
+        /* ================= HALAMAN 4 ================= */
+
+        .memory-page {
+            text-align: center;
+        }
+
+        .memory-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+            margin-top: 8px;
+            margin-bottom: 12px;
+        }
+
+        .memory-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-align: left;
+        }
+
+        .memory-photo {
+            width: 105px;
+            height: 82px;
+            flex-shrink: 0;
+            padding: 4px;
+
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 14px;
+
+            box-shadow:
+                0 6px 18px rgba(0, 0, 0, 0.25),
+                0 0 18px rgba(255, 182, 193, 0.05);
+        }
+
+        .memory-photo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .memory-text {
+            flex: 1;
+        }
+
+        .memory-number {
+            color: #f3a9c5;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            margin-bottom: 3px;
+        }
+
+        .memory-title {
+            color: #ffffff;
+            font-size: 0.82rem;
+            font-weight: 500;
+            margin-bottom: 3px;
+        }
+
+        .memory-caption {
+            color: #cbd5e1;
+            font-size: 0.68rem;
+            line-height: 1.5;
+            font-weight: 300;
+            margin: 0;
+        }
+
+        /* ================= HALAMAN 5 ================= */
+
+        .you-page {
+            text-align: center;
+        }
+
+        .you-page .card-subtitle {
+            margin-bottom: 30px;
+        }
+
+        .you-content {
+            position: relative;
+            padding: 8px 8px 5px;
+        }
+
+        .you-main {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.7rem;
+            font-style: italic;
+            color: #ffffff;
+            line-height: 1.35;
+            margin-bottom: 24px;
+        }
+
+        .you-line {
+            font-size: 0.78rem;
+            line-height: 1.8;
+            color: #cbd5e1;
+            font-weight: 300;
+            margin-bottom: 18px;
+        }
+
+        .you-line span {
+            color: #ffffff;
+        }
+
+        .you-divider {
+            width: 45px;
+            height: 1px;
+            background: rgba(255, 182, 193, 0.55);
+            margin: 24px auto;
+        }
+
+        .you-ending {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            font-style: italic;
+            line-height: 1.6;
+            color: #ffffff;
+            margin-top: 5px;
+        }
+
+        .you-heart {
+            display: block;
+            color: #ffb6c1;
+            font-size: 1.2rem;
+            margin-top: 12px;
+        }
+
+        .tiny-note {
+            position: absolute;
+            font-size: 0.55rem;
+            color: rgba(255, 182, 193, 0.55);
+            letter-spacing: 2px;
+        }
+
+        .note-one {
+            top: 0;
+            left: 0;
+            transform: rotate(-8deg);
+        }
+
+        .note-two {
+            top: 3px;
+            right: 0;
+            transform: rotate(8deg);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Audio Player -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="love.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Tombol Musik -->
+    <button id="musicBtn" class="music-btn" onclick="toggleMusic()">
+        <span class="music-icon">♫</span>
+        <span id="musicText">Tap to Play Music ♫</span>
+    </button>
+
+    <!-- Background Bintang -->
+    <div class="stars"></div>
+
+    <!-- ================= COVER ================= -->
+    <div id="page-cover" class="page active">
+        <div class="cover-container">
+            <p class="sub-header">✧ A LITTLE SOMETHING ✧</p>
+            <h1 class="title">for you <span class="heart">♡</span></h1>
+            <p class="tagline">made with love, from your love.</p>
+
+            <div class="image-wrapper">
+                <div class="glow"></div>
+                <img src="176455-removebg-preview.png" alt="Beruang" class="bear-img">
+            </div>
+
+            <button class="btn-open" onclick="goToPage('page-1')">
+                open the book ♡
+            </button>
+
+            <p class="footer-note">✧ A TINY BOOK FULL OF LOVE ✧</p>
+        </div>
+    </div>
+
+    <!-- ================= HALAMAN 1 ================= -->
+    <div id="page-1" class="page">
+        <div class="card">
+            <div class="card-header">
+                <span>01</span>
+                <span class="moon-icon">🌙</span>
+            </div>
+
+            <h2 class="card-title">
+                happy birthday,<br>my love ♡
+            </h2>
+
+            <p class="card-subtitle">a little wish for you</p>
+
+            <div class="card-content">
+                <p>I hope this new age brings good things your way, one by one. ♡</p>
+
+                <p>
+                    I hope you always have reasons to smile,
+                    the courage to go after what you want,
+                    and people around you who make you feel loved.
+                </p>
+            </div>
+
+            <div class="card-nav">
+                <button class="nav-btn" onclick="goToPage('page-cover')">
+                    ← previous
+                </button>
+
+                <button class="nav-btn" onclick="goToPage('page-2')">
+                    next page →
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= HALAMAN 2 ================= -->
+    <div id="page-2" class="page">
+        <div class="card">
+            <div class="card-header">
+                <span>02</span>
+                <span class="moon-icon">🌙</span>
+            </div>
+
+            <h2 class="card-title">if you ever forget...</h2>
+
+            <p class="card-subtitle">
+                come back to this page ♡
+            </p>
+
+            <div class="card-content">
+                <p>you are loved. ♡</p>
+
+                <p>you are never alone.</p>
+
+                <p>
+                    you always have a place to come home to.<br>
+                    and I'll always be here to listen.
+                </p>
+
+                <img
+                    src="176455-removebg-preview.png"
+                    alt="Beruang Kecil"
+                    class="small-bear"
+                >
+
+                <div class="highlight-text">
+                    you'll always have<br>
+                    a home in me. ♡
+                </div>
+            </div>
+
+            <div class="card-nav">
+                <button class="nav-btn" onclick="goToPage('page-1')">
+                    ← previous
+                </button>
+
+                <button class="nav-btn" onclick="goToPage('page-3')">
+                    next page →
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= HALAMAN 3 ================= -->
+    <div id="page-3" class="page">
+        <div class="card">
+            <div class="card-header">
+                <span>03</span>
+                <span class="moon-icon">🌙</span>
+            </div>
+
+            <h2 class="card-title">one more thing ♡</h2>
+
+            <div
+                class="card-content"
+                style="text-align: left; font-size: 0.78rem;"
+            >
+                <p>
+                    I hope this year is kinder to you,
+                    more happy days, less things that make you tired,
+                    and more moments you'll look back on with a smile. ♡
+                </p>
+
+                <p>
+                    and if someday things get a little too much,
+                    please remember that you don't have to go through it alone.
+                </p>
+
+                <p>
+                    you have me. you can always tell me about your day,
+                    the little things that happened, the random things on your mind,
+                    or anything that's been bothering you. ♡
+                </p>
+
+                <p>
+                    I might not always know what to say,
+                    and I might not always know how to make things better,
+                    but I'll always be here to listen.
+                </p>
+
+                <p>
+                    so whenever you need someone to talk to,
+                    someone to stay, or just a place to rest for a while,
+                    you can always come to me.
+                </p>
+
+                <p style="text-align: center; margin-top: 15px;">
+                    I hope you know that you'll always have a home in me. ♡
+                </p>
+            </div>
+
+            <div class="card-nav">
+                <button class="nav-btn" onclick="goToPage('page-2')">
+                    ← previous
+                </button>
+
+                <button class="nav-btn" onclick="goToPage('page-4')">
+                    next page →
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= HALAMAN 4 ================= -->
+    <div id="page-4" class="page">
+        <div class="card memory-page">
+
+            <div class="card-header">
+                <span>04</span>
+                <span class="moon-icon">🌙</span>
+            </div>
+
+            <h2 class="card-title">moments</h2>
+
+            <p class="card-subtitle">
+                a few moments i wanted to keep ♡
+            </p>
+
+            <div class="memory-list">
+
+                <!-- FOTO 1 -->
+                <div class="memory-item">
+                    <div class="memory-photo">
+                        <img src="foto1.jpg" alt="Memory 1">
+                    </div>
+
+                    <div class="memory-text">
+                        <div class="memory-number">01</div>
+
+                        <div class="memory-title">
+                            this little moment
+                        </div>
+
+                        <p class="memory-caption">
+                            one of those moments that
+                            quietly became special to me.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FOTO 2 -->
+                <div class="memory-item">
+                    <div class="memory-photo">
+                        <img src="foto2.jpg" alt="Memory 2">
+                    </div>
+
+                    <div class="memory-text">
+                        <div class="memory-number">02</div>
+
+                        <div class="memory-title">
+                            another one
+                        </div>
+
+                        <p class="memory-caption">
+                            somehow, even the simplest
+                            moments feel different with you.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FOTO 3 -->
+                <div class="memory-item">
+                    <div class="memory-photo">
+                        <img src="foto3.jpg" alt="Memory 3">
+                    </div>
+
+                    <div class="memory-text">
+                        <div class="memory-number">03</div>
+
+                        <div class="memory-title">
+                            one i'll remember
+                        </div>
+
+                        <p class="memory-caption">
+                            a small piece of our story
+                            that i want to keep.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card-nav">
+                <button class="nav-btn" onclick="goToPage('page-3')">
+                    ← previous
+                </button>
+
+                <button class="nav-btn" onclick="goToPage('page-5')">
+                    next page →
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ================= HALAMAN 5 ================= -->
+    <div id="page-5" class="page">
+        <div class="card you-page">
+
+            <div class="card-header">
+                <span>05</span>
+                <span class="moon-icon">🌙</span>
+            </div>
+
+            <h2 class="card-title">somehow, it's you</h2>
+
+            <p class="card-subtitle">
+                and i don't really know how else to put it ♡
+            </p>
+
+            <div class="you-content">
+
+                <span class="tiny-note note-one">♡ little things</span>
+                <span class="tiny-note note-two">just you</span>
+
+                <div class="you-main">
+                    somehow,<br>
+                    it's always you.
+                </div>
+
+                <p class="you-line">
+                    out of all the little things
+                    i could've fallen for,
+                    it was <span>your voice</span>,
+                    your laugh,
+                    the way you tease me,
+                    and the way you care.
+                </p>
+
+                <p class="you-line">
+                    even the annoying little things
+                    somehow became familiar.
+                    the tengil side,
+                    the jealousy,
+                    all of it.
+                </p>
+
+                <div class="you-divider"></div>
+
+                <p class="you-line">
+                    i don't think i can explain exactly when
+                    you became this important to me.
+                </p>
+
+                <div class="you-ending">
+                    you just did.
+                    <br>
+                    and i'm really glad you did.
+                    <span class="you-heart">♡</span>
+                </div>
+
+            </div>
+
+            <div class="card-nav">
+                <button class="nav-btn" onclick="goToPage('page-4')">
+                    ← previous
+                </button>
+
+                <button class="nav-btn" onclick="goToPage('page-6')">
+                    next page →
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JavaScript Navigasi & Musik -->
+    <script>
+        const music = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('musicBtn');
+        const musicText = document.getElementById('musicText');
+
+        function toggleMusic() {
+            if (music.paused) {
+                music.play().then(() => {
+                    musicText.textContent = 'Music Playing ♪';
+                    musicBtn.classList.add('playing');
+                }).catch(err => {
+                    console.log("Audio error: ", err);
+                });
+            } else {
+                music.pause();
+                musicText.textContent = 'Music Paused ♫';
+                musicBtn.classList.remove('playing');
+            }
+        }
+
+        // Putar musik otomatis pada klik pertama
+        document.body.addEventListener('click', function() {
+            if (music.paused) {
+                music.play().then(() => {
+                    musicText.textContent = 'Music Playing ♪';
+                    musicBtn.classList.add('playing');
+                }).catch(() => {});
+            }
+        }, { once: true });
+
+        // Fungsi Perpindahan Halaman Tanpa Reload
+        function goToPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+
+            const targetPage = document.getElementById(pageId);
+
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+
+</body>
+</html>
