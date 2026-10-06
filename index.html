@@ -1,1076 +1,1139 @@
 <!DOCTYPE html>
-<html lang="id">
-
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>for you ♡</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Georgia, "Times New Roman", serif;
+    background: #050b24;
+    color: white;
+}
+
+/* =========================
+   STARS
+========================= */
+
+.stars {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background: white;
+    opacity: .5;
+    animation: twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+    0%,100% {
+        opacity: .2;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+/* =========================
+   COVER
+========================= */
+
+.cover {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #111d52 0%,
+            #080f2d 48%,
+            #030718 100%
+        );
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+.cover.hide {
+    opacity: 0;
+    transform: scale(1.05);
+    pointer-events: none;
+}
+
+.cover h1 {
+    font-size: 42px;
+    font-weight: normal;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    opacity: .7;
+    margin-bottom: 45px;
+}
 
-    <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+/* =========================
+   HEART
+========================= */
 
-    <title>For You ♡</title>
+.heart-wrap {
+    position: relative;
 
+    width: 150px;
+    height: 150px;
+
+    margin-bottom: 40px;
+
+    animation:
+        floating 3s ease-in-out infinite;
+}
 
-    <style>
+.heart {
+    width: 150px;
+    height: 150px;
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    animation:
+        heartbeat 2s ease-in-out infinite;
 
+    filter:
+        drop-shadow(
+            0 0 25px rgba(255,125,190,.35)
+        );
+}
 
-        html,
-        body {
-            width: 100%;
-            height: 100%;
-        }
+@keyframes floating {
 
+    0%,100% {
+        transform: translateY(0);
+    }
 
-        body {
+    50% {
+        transform: translateY(-10px);
+    }
+}
 
-            overflow: hidden;
+@keyframes heartbeat {
 
-            background: #070d20;
+    0%,100% {
+        transform: scale(1);
+    }
 
-            font-family: Georgia, serif;
-        }
+    15% {
+        transform: scale(1.06);
+    }
 
+    30% {
+        transform: scale(1);
+    }
 
-        /* ==================================================
-           COVER
-        ================================================== */
+    45% {
+        transform: scale(1.04);
+    }
 
-        .cover {
+    60% {
+        transform: scale(1);
+    }
+}
 
-            position: absolute;
 
-            inset: 0;
+/* =========================
+   SPARKLES
+========================= */
 
-            width: 100%;
-            height: 100vh;
+.sparkle {
+    position: absolute;
+    color: #ffd8ec;
 
-            display: flex;
+    animation:
+        sparkleFloat 2.5s ease-in-out infinite;
+}
 
-            justify-content: center;
-            align-items: center;
+.s1 {
+    top: 10px;
+    left: 5px;
+    font-size: 18px;
+}
 
-            overflow: hidden;
+.s2 {
+    top: 55px;
+    right: -15px;
+    font-size: 12px;
+    animation-delay: .7s;
+}
 
-            background:
-                radial-gradient(
-                    circle at 50% 40%,
-                    #304873 0%,
-                    #1a2a4b 40%,
-                    #0d1832 70%,
-                    #070d20 100%
-                );
+.s3 {
+    bottom: 15px;
+    left: -10px;
+    font-size: 10px;
+    animation-delay: 1.2s;
+}
 
-            transition:
-                opacity 0.8s ease,
-                transform 0.8s ease;
-        }
+@keyframes sparkleFloat {
 
+    0%,100% {
+        opacity: .3;
+        transform:
+            translateY(0)
+            rotate(0);
+    }
 
-        .cover.hide {
+    50% {
+        opacity: 1;
+        transform:
+            translateY(-7px)
+            rotate(15deg);
+    }
+}
 
-            opacity: 0;
 
-            transform:
-                scale(1.05);
+/* =========================
+   OPEN BUTTON
+========================= */
 
-            pointer-events: none;
-        }
+.open-btn {
+    border: 1px solid rgba(255,255,255,.4);
 
+    background:
+        rgba(255,255,255,.06);
 
-        /* ==================================================
-           STARS
-        ================================================== */
+    color: white;
 
-        .stars {
+    padding:
+        13px 25px;
 
-            position: absolute;
+    border-radius: 30px;
 
-            inset: 0;
+    font-size: 13px;
 
-            pointer-events: none;
-        }
+    letter-spacing: 1px;
 
+    cursor: pointer;
 
-        .star {
+    backdrop-filter:
+        blur(10px);
 
-            position: absolute;
+    transition: .3s;
+}
 
-            color: #dce7ff;
+.open-btn:hover {
 
-            opacity: 0.5;
+    background:
+        rgba(255,255,255,.15);
 
-            animation:
-                twinkle 3s
-                ease-in-out infinite;
-        }
+    transform:
+        translateY(-2px);
+}
 
+.bottom-text {
 
-        @keyframes twinkle {
+    position: absolute;
 
-            0%,
-            100% {
+    bottom: 25px;
 
-                opacity: 0.15;
+    font-family: Arial, sans-serif;
 
-                transform:
-                    scale(0.7);
-            }
+    font-size: 11px;
 
+    opacity: .45;
 
-            50% {
+    letter-spacing: 1px;
+}
 
-                opacity: 0.9;
 
-                transform:
-                    scale(1.2);
-            }
-        }
+/* =========================
+   BOOK PAGE
+========================= */
 
+.book-page {
 
-        /* ==================================================
-           SPARKLE
-        ================================================== */
+    position: fixed;
 
-        .sparkle {
+    inset: 0;
 
-            position: absolute;
+    display: flex;
 
-            z-index: 2;
+    justify-content: center;
 
-            color: #f8dce9;
+    align-items: center;
 
-            text-shadow:
-                0 0 10px
-                rgba(255,220,235,0.8);
+    padding: 25px;
 
-            pointer-events: none;
+    opacity: 0;
 
-            animation:
-                sparkle 3s
-                ease-in-out infinite;
-        }
+    transform: scale(.96);
 
+    pointer-events: none;
 
-        .s1 {
+    transition:
+        opacity .7s ease,
+        transform .7s ease;
 
-            top: 20%;
+    background:
+        radial-gradient(
+            circle at top,
+            #111c4c 0%,
+            #080f2d 48%,
+            #030718 100%
+        );
+}
 
-            left: 12%;
+.book-page.show {
 
-            font-size: 22px;
-        }
+    opacity: 1;
 
+    transform: scale(1);
 
-        .s2 {
+    pointer-events: auto;
+}
 
-            top: 28%;
 
-            right: 13%;
+/* =========================
+   PAGE PAPER
+========================= */
 
-            font-size: 15px;
+.page {
 
-            animation-delay: 0.7s;
-        }
+    position: relative;
 
+    width:
+        min(600px, 92vw);
 
-        .s3 {
+    height:
+        min(720px, 88vh);
 
-            bottom: 25%;
+    padding:
+        55px 45px 75px;
 
-            left: 18%;
+    border-radius: 8px;
 
-            font-size: 12px;
+    background:
+        rgba(246,244,239,.97);
 
-            animation-delay: 1.2s;
-        }
+    color: #18203d;
 
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.45),
+        0 0 30px rgba(100,130,255,.08);
 
-        .s4 {
+    overflow: hidden;
+}
 
-            bottom: 20%;
+.page-number {
 
-            right: 17%;
+    position: absolute;
 
-            font-size: 20px;
+    top: 25px;
 
-            animation-delay: 1.8s;
-        }
+    left: 30px;
 
+    font-family: Arial, sans-serif;
 
-        @keyframes sparkle {
+    font-size: 10px;
 
-            0%,
-            100% {
+    letter-spacing: 2px;
 
-                opacity: 0.2;
+    opacity: .45;
+}
 
-                transform:
-                    scale(0.7)
-                    rotate(0deg);
-            }
+.chapter {
 
+    font-family: Arial, sans-serif;
 
-            50% {
+    font-size: 10px;
 
-                opacity: 1;
+    letter-spacing: 3px;
 
-                transform:
-                    scale(1.3)
-                    rotate(12deg);
-            }
-        }
+    text-transform: uppercase;
 
+    opacity: .5;
 
-        /* ==================================================
-           COVER CONTENT
-        ================================================== */
+    text-align: center;
 
-        .cover-content {
+    margin-bottom: 18px;
+}
 
-            position: relative;
+.page h2 {
 
-            z-index: 5;
+    font-size: 34px;
 
-            width: 100%;
+    font-weight: normal;
 
-            max-width: 430px;
+    line-height: 1.15;
 
-            padding: 25px;
+    text-align: center;
 
-            text-align: center;
+    margin-bottom: 28px;
+}
 
-            animation:
-                appear 1s ease;
-        }
+.page p {
 
+    font-family: Arial, sans-serif;
 
-        @keyframes appear {
+    font-size: 14px;
 
-            from {
+    line-height: 1.8;
 
-                opacity: 0;
+    text-align: center;
 
-                transform:
-                    translateY(20px);
-            }
+    opacity: .85;
+}
 
+.divider {
 
-            to {
+    width: 45px;
 
-                opacity: 1;
+    height: 1px;
 
-                transform:
-                    translateY(0);
-            }
-        }
+    background: #18203d;
 
+    opacity: .25;
 
-        .small {
+    margin: 25px auto;
+}
 
-            color: #aebde0;
 
-            font-family:
-                Arial, sans-serif;
+/* =========================
+   PAGE 01
+========================= */
 
-            font-size: 9px;
+.page01-text {
 
-            letter-spacing: 4px;
+    max-width: 440px;
 
-            text-transform:
-                uppercase;
-        }
+    margin: auto;
+}
 
 
-        h1 {
+/* =========================
+   PAGE 02
+========================= */
 
-            margin-top: 9px;
+.page02 {
 
-            color: #f8e9ef;
+    overflow-y: auto;
 
-            font-size: 60px;
+    scrollbar-width: none;
+}
 
-            font-weight:
-                normal;
+.page02::-webkit-scrollbar {
+    display: none;
+}
 
-            font-style:
-                italic;
+.birthday-text {
 
-            letter-spacing:
-                -2px;
-        }
+    max-width: 450px;
 
+    margin: auto;
 
-        .subtitle {
+    padding-bottom: 20px;
+}
 
-            margin-top: 7px;
+.birthday-text p {
 
-            color: #bac8e4;
+    margin-bottom: 18px;
+}
 
-            font-size: 13px;
-        }
+.home-line {
 
+    font-family: Georgia, serif;
 
-        /* ==================================================
-           HEART
-        ================================================== */
+    font-size: 17px;
 
-        .heart-area {
+    font-style: italic;
 
-            position: relative;
+    text-align: center;
 
-            width: 240px;
+    line-height: 1.6;
 
-            height: 230px;
+    margin-top: 25px;
+}
 
-            margin:
-                15px auto 10px;
 
-            display: flex;
+/* =========================
+   LOVE BUBBLES
+========================= */
 
-            justify-content: center;
+.love-bubbles {
 
-            align-items: center;
+    position: absolute;
 
-            animation:
-                floating 4s
-                ease-in-out infinite;
-        }
+    inset: 0;
 
+    overflow: hidden;
 
-        @keyframes floating {
+    pointer-events: none;
 
-            0%,
-            100% {
+    z-index: 0;
+}
 
-                transform:
-                    translateY(0);
-            }
+.love-bubble {
 
+    position: absolute;
 
-            50% {
+    bottom: -40px;
 
-                transform:
-                    translateY(-9px);
-            }
-        }
+    font-family: Arial, sans-serif;
 
+    color: #ff8fbd;
 
-        .heart {
+    opacity: 0;
 
-            width: 145px;
+    animation:
+        bubbleUp linear infinite;
 
-            height: 145px;
+    filter:
+        drop-shadow(
+            0 0 6px rgba(255,130,185,.35)
+        );
+}
 
-            filter:
-                drop-shadow(
-                    0 15px 22px
-                    rgba(0,0,0,0.25)
-                )
-                drop-shadow(
-                    0 0 28px
-                    rgba(245,160,195,0.25)
-                );
+@keyframes bubbleUp {
 
-            animation:
-                heartbeat 2.5s
-                ease-in-out infinite;
-        }
+    0% {
 
+        transform:
+            translateY(0)
+            scale(.7)
+            rotate(0deg);
 
-        @keyframes heartbeat {
+        opacity: 0;
+    }
 
-            0%,
-            100% {
+    10% {
 
-                transform:
-                    scale(1);
-            }
+        opacity: .35;
+    }
 
+    50% {
 
-            45% {
+        opacity: .7;
+    }
 
-                transform:
-                    scale(1.05);
-            }
+    90% {
 
+        opacity: .2;
+    }
 
-            55% {
+    100% {
 
-                transform:
-                    scale(1);
-            }
-        }
+        transform:
+            translateY(-800px)
+            scale(1.15)
+            rotate(20deg);
 
+        opacity: 0;
+    }
+}
 
-        /* ==================================================
-           BUTTON
-        ================================================== */
 
-        .open-btn {
+/* =========================
+   PAGE CONTENT ABOVE BUBBLES
+========================= */
 
-            padding:
-                13px 28px;
+.page-content {
 
-            border:
-                1px solid
-                rgba(190,207,242,0.55);
+    position: relative;
 
-            border-radius:
-                50px;
+    z-index: 2;
+}
 
-            background:
-                rgba(40,60,100,0.7);
 
-            color: #f8eaf0;
+/* =========================
+   NAVIGATION
+========================= */
 
-            font-family:
-                Arial, sans-serif;
+.nav {
 
-            font-size: 13px;
+    position: absolute;
 
-            letter-spacing: 1px;
+    bottom: 25px;
 
-            cursor: pointer;
+    left: 0;
 
-            transition:
-                0.3s ease;
-        }
+    right: 0;
 
+    display: flex;
 
-        .open-btn:active {
+    justify-content: space-between;
 
-            transform:
-                scale(0.95);
-        }
+    padding: 0 30px;
 
+    z-index: 5;
+}
 
-        .bottom {
+.nav button {
 
-            margin-top: 18px;
+    border: none;
 
-            color: #8294bc;
+    background: none;
 
-            font-family:
-                Arial, sans-serif;
+    color: #18203d;
 
-            font-size: 9px;
+    font-family: Arial, sans-serif;
 
-            letter-spacing: 2px;
-        }
+    font-size: 11px;
 
+    letter-spacing: 1px;
 
-        /* ==================================================
-           HALAMAN BUKU
-        ================================================== */
+    cursor: pointer;
 
-        .book-page {
+    opacity: .55;
 
-            position: absolute;
+    transition: .3s;
+}
 
-            inset: 0;
+.nav button:hover {
 
-            width: 100%;
-            height: 100vh;
+    opacity: 1;
 
-            display: flex;
+    transform:
+        translateY(-2px);
+}
 
-            justify-content: center;
+.nav .disabled {
 
-            align-items: center;
+    opacity: 0;
 
-            padding: 25px;
+    pointer-events: none;
+}
 
-            opacity: 0;
 
-            transform:
-                scale(0.96);
+/* =========================
+   MOBILE
+========================= */
 
-            pointer-events: none;
+@media (max-width: 600px) {
 
-            transition:
-                opacity 0.8s ease,
-                transform 0.8s ease;
+    .cover h1 {
+        font-size: 34px;
+    }
 
-            background:
-                radial-gradient(
-                    circle at 50% 30%,
-                    #243b65 0%,
-                    #121f3b 48%,
-                    #070d20 100%
-                );
-        }
+    .subtitle {
+        font-size: 11px;
+    }
 
+    .heart-wrap,
+    .heart {
+        width: 125px;
+        height: 125px;
+    }
 
-        .book-page.show {
+    .page {
 
-            opacity: 1;
+        height: 86vh;
 
-            transform:
-                scale(1);
+        padding:
+            50px 28px 70px;
+    }
 
-            pointer-events:
-                auto;
-        }
+    .page h2 {
 
+        font-size: 28px;
+    }
 
-        /* ==================================================
-           BUKU
-        ================================================== */
+    .page p {
 
-        .page {
+        font-size: 13px;
 
-            position: relative;
+        line-height: 1.7;
+    }
 
-            width: min(88vw, 390px);
+    .nav {
 
-            min-height: 560px;
-
-            padding:
-                55px 32px 35px;
-
-            display: flex;
-
-            flex-direction:
-                column;
-
-            justify-content:
-                space-between;
-
-            border:
-                1px solid
-                rgba(205,218,247,0.25);
-
-            border-radius:
-                5px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #17294a,
-                    #0e1b34
-                );
-
-            box-shadow:
-
-                0 25px 60px
-                rgba(0,0,0,0.45),
-
-                inset
-                0 0 45px
-                rgba(100,130,180,0.06);
-        }
-
-
-        /* garis dekorasi buku */
-
-        .page::before {
-
-            content: "";
-
-            position: absolute;
-
-            top: 22px;
-            left: 22px;
-            right: 22px;
-
-            height: 1px;
-
-            background:
-                rgba(190,205,235,0.18);
-        }
-
-
-        .page-number {
-
-            position: absolute;
-
-            top: 31px;
-
-            right: 27px;
-
-            color: #7184aa;
-
-            font-family:
-                Arial, sans-serif;
-
-            font-size: 9px;
-
-            letter-spacing: 2px;
-        }
-
-
-        .page-small {
-
-            color: #9daecc;
-
-            font-family:
-                Arial, sans-serif;
-
-            font-size: 9px;
-
-            letter-spacing: 3px;
-
-            text-transform:
-                uppercase;
-        }
-
-
-        .page-title {
-
-            margin-top: 18px;
-
-            color: #f4e8ee;
-
-            font-size: 35px;
-
-            font-weight:
-                normal;
-
-            font-style:
-                italic;
-
-            line-height: 1.15;
-        }
-
-
-        .page-line {
-
-            width: 45px;
-
-            height: 1px;
-
-            margin-top: 20px;
-
-            background:
-                #c68da7;
-        }
-
-
-        .page-text {
-
-            margin-top: 28px;
-
-            color: #c0cce3;
-
-            font-family:
-                Arial, sans-serif;
-
-            font-size: 14px;
-
-            line-height: 1.9;
-
-            text-align:
-                left;
-        }
-
-
-        .page-text span {
-
-            color: #f0dce5;
-        }
-
-
-        .page-decoration {
-
-            text-align:
-                center;
-
-            color: #c68da7;
-
-            font-size: 22px;
-
-            margin-bottom: 25px;
-        }
-
-
-        .next-btn {
-
-            align-self:
-                center;
-
-            padding:
-                10px 22px;
-
-            border:
-                1px solid
-                rgba(190,207,242,0.4);
-
-            border-radius:
-                50px;
-
-            background:
-                transparent;
-
-            color: #cbd6eb;
-
-            font-family:
-                Arial, sans-serif;
-
-            font-size: 11px;
-
-            letter-spacing: 1px;
-
-            cursor: pointer;
-        }
-
-
-        /* ==================================================
-           HP PENDEK
-        ================================================== */
-
-        @media (max-height: 680px) {
-
-            .cover-content {
-
-                transform:
-                    scale(0.85);
-            }
-
-
-            .page {
-
-                min-height: 500px;
-
-                padding-top: 45px;
-            }
-
-        }
-
-    </style>
-
+        padding:
+            0 22px;
+    }
+}
+</style>
 </head>
 
 
 <body>
 
 
-    <!-- ==================================================
-         COVER
-    ================================================== -->
+<!-- =========================
+     BACKGROUND STARS
+========================= -->
 
-    <section
-        class="cover"
-        id="cover">
+<div class="stars" id="stars"></div>
 
 
-        <div
-            class="stars"
-            id="stars">
+<!-- =========================
+     COVER
+========================= -->
+
+<section class="cover" id="cover">
+
+    <h1>
+        for you ♡
+    </h1>
+
+    <div class="subtitle">
+        made with love, from your love.
+    </div>
+
+
+    <div class="heart-wrap">
+
+        <span class="sparkle s1">
+            ✦
+        </span>
+
+        <span class="sparkle s2">
+            ✧
+        </span>
+
+        <span class="sparkle s3">
+            ✦
+        </span>
+
+
+        <svg
+            class="heart"
+            viewBox="0 0 200 200">
+
+            <defs>
+
+                <linearGradient
+                    id="heartGradient"
+                    x1="0%"
+                    y1="0%"
+                    x2="100%"
+                    y2="100%">
+
+                    <stop
+                        offset="0%"
+                        stop-color="#ff9acb"/>
+
+                    <stop
+                        offset="50%"
+                        stop-color="#ff6fae"/>
+
+                    <stop
+                        offset="100%"
+                        stop-color="#ff477f"/>
+
+                </linearGradient>
+
+            </defs>
+
+
+            <path
+                d="
+                M100 170
+                C85 155 30 120 30 70
+                C30 40 50 25 73 25
+                C87 25 97 32 100 45
+                C103 32 113 25 127 25
+                C150 25 170 40 170 70
+                C170 120 115 155 100 170Z
+                "
+                fill="url(#heartGradient)"
+            />
+
+
+            <ellipse
+                cx="75"
+                cy="58"
+                rx="17"
+                ry="8"
+                fill="rgba(255,255,255,.3)"
+                transform="rotate(-25 75 58)"
+            />
+
+        </svg>
+
+    </div>
+
+
+    <button
+        class="open-btn"
+        onclick="openBook()">
+
+        open the book ♡
+
+    </button>
+
+
+    <div class="bottom-text">
+
+        a tiny book full of love ✧
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     PAGE 01
+========================= -->
+
+<section
+    class="book-page"
+    id="page01">
+
+    <div class="page">
+
+        <div class="page-content">
+
+            <div class="page-number">
+                01
+            </div>
+
+            <div class="chapter">
+                chapter one
+            </div>
+
+            <h2>
+                so, this is<br>
+                for you.
+            </h2>
+
+            <div class="divider"></div>
+
+            <div class="page01-text">
+
+                <p>
+                    a little something i made
+                    just because you're you.
+                </p>
+
+                <br>
+
+                <p>
+                    nothing too big,
+                    just a tiny place filled
+                    with things i want you to know.
+                </p>
+
+            </div>
+
         </div>
 
 
-        <div class="sparkle s1">✦</div>
-        <div class="sparkle s2">✧</div>
-        <div class="sparkle s3">·</div>
-        <div class="sparkle s4">✦</div>
+        <div class="nav">
 
-
-        <div class="cover-content">
-
-
-            <div class="small">
-                a little something
-            </div>
-
-
-            <h1>
-                for you ♡
-            </h1>
-
-
-            <div class="subtitle">
-                made with love, just for you.
-            </div>
-
-
-            <!-- HEART -->
-
-            <div class="heart-area">
-
-
-                <svg
-                    class="heart"
-                    viewBox="0 0 200 200"
-                    xmlns="http://www.w3.org/2000/svg">
-
-
-                    <defs>
-
-                        <linearGradient
-                            id="pink"
-                            x1="0%"
-                            y1="0%"
-                            x2="100%"
-                            y2="100%">
-
-                            <stop
-                                offset="0%"
-                                stop-color="#ffdce9"/>
-
-                            <stop
-                                offset="50%"
-                                stop-color="#f3a9c5"/>
-
-                            <stop
-                                offset="100%"
-                                stop-color="#d7779d"/>
-
-                        </linearGradient>
-
-                    </defs>
-
-
-                    <path
-                        d="
-                        M100 175
-                        C85 155 25 120 25 65
-                        C25 35 48 20 70 25
-                        C87 29 96 42 100 55
-                        C104 42 113 29 130 25
-                        C152 20 175 35 175 65
-                        C175 120 115 155 100 175
-                        Z
-                        "
-
-                        fill="url(#pink)"
-                    />
-
-
-                    <ellipse
-                        cx="65"
-                        cy="55"
-                        rx="9"
-                        ry="19"
-
-                        fill="#ffffff"
-
-                        opacity="0.3"
-
-                        transform="
-                            rotate(-35 65 55)
-                        "
-                    />
-
-
-                </svg>
-
-            </div>
-
-
-            <button
-                class="open-btn"
-                onclick="openBook()">
-
-                open the book ♡
-
+            <button class="disabled">
+                ← previous
             </button>
 
-
-            <div class="bottom">
-
-                a tiny book full of love ✧
-
-            </div>
-
+            <button onclick="goToPage(2)">
+                next page →
+            </button>
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
 
-    <!-- ==================================================
-         HALAMAN 2
-    ================================================== -->
+<!-- =========================
+     PAGE 02
+========================= -->
 
-    <section
-        class="book-page"
-        id="bookPage">
+<section
+    class="book-page"
+    id="page02">
 
-
-        <div class="page">
-
-
-            <div>
+    <div class="page page02">
 
 
-                <div class="page-number">
-                    01
-                </div>
+        <!-- LOVE BUBBLES -->
+
+        <div
+            class="love-bubbles"
+            id="loveBubbles">
+        </div>
 
 
-                <div class="page-small">
-                    chapter one
-                </div>
+        <!-- CONTENT -->
+
+        <div class="page-content">
+
+            <div class="page-number">
+                02
+            </div>
+
+            <div class="chapter">
+                chapter two
+            </div>
+
+            <h2>
+                happy birthday,<br>
+                my love ♡
+            </h2>
+
+            <div class="divider"></div>
 
 
-                <div class="page-title">
-                    so, this is<br>
-                    for you.
-                </div>
+            <div class="birthday-text">
+
+                <p>
+                    i hope this new age brings
+                    good things your way, one by one.
+                    i hope you always have reasons
+                    to smile, the courage to go after
+                    what you want, and people around
+                    you who make you feel loved.
+                </p>
 
 
-                <div class="page-line"></div>
+                <p>
+                    i hope this year is kinder to you.
+                    more happy days,
+                    less things that make you tired,
+                    and more moments you'll look back
+                    on with a smile.
+                </p>
 
 
-                <div class="page-text">
+                <p>
+                    and if someday things get
+                    a little too much,
+                    please remember that you don't
+                    have to go through it alone.
+                </p>
 
-                    I don't really know how to put
-                    everything I feel into a few
-                    sentences.
 
-                    <br><br>
+                <p>
+                    you have me.
+                    you can always tell me about your day,
+                    the little things that happened,
+                    the random things on your mind,
+                    or anything that's been bothering you.
+                </p>
 
-                    So instead, I made this little
-                    space for <span>you</span>.
 
-                    <br><br>
+                <p>
+                    i might not always know what to say,
+                    and i might not always know how
+                    to make things better,
+                    but i'll always be here to listen.
+                </p>
 
-                    A place filled with little things,
-                    memories, and words that I
-                    probably don't say enough.
 
+                <p>
+                    so whenever you need someone
+                    to talk to, someone to stay,
+                    or just a place to rest for a while,
+                    you can always come to me.
+                </p>
+
+
+                <div class="home-line">
+                    i hope you know that you'll always
+                    have a home in me. ♡
                 </div>
 
             </div>
-
-
-            <div>
-
-
-                <div class="page-decoration">
-                    ✦ ♡ ✦
-                </div>
-
-
-                <button
-                    class="next-btn"
-                    onclick="nextPage()">
-
-                    turn the page →
-
-                </button>
-
-            </div>
-
 
         </div>
 
-    </section>
+
+        <!-- NAVIGATION -->
+
+        <div class="nav">
+
+            <button onclick="goToPage(1)">
+                ← previous
+            </button>
+
+            <button onclick="goToPage(3)">
+                next page →
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
 
 
 
-    <script>
+<script>
 
 
-        /* ==================================================
-           BINTANG RANDOM
-        ================================================== */
+/* =========================
+   RANDOM STARS
+========================= */
 
-        const stars =
-            document.getElementById("stars");
-
-
-        for (
-            let i = 0;
-            i < 70;
-            i++
-        ) {
+const starsContainer =
+    document.getElementById("stars");
 
 
-            const star =
-                document.createElement("span");
+for (let i = 0; i < 70; i++) {
 
+    const star =
+        document.createElement("div");
 
-            star.className =
-                "star";
+    star.className =
+        "star";
 
+    star.style.left =
+        Math.random() * 100 + "%";
 
-            star.textContent =
-                Math.random() > 0.7
-                ? "✧"
-                : "·";
+    star.style.top =
+        Math.random() * 100 + "%";
 
+    star.style.animationDelay =
+        Math.random() * 3 + "s";
 
-            star.style.left =
-                Math.random() * 100 + "%";
+    star.style.transform =
+        "scale(" +
+        (Math.random() * 1.5 + .5) +
+        ")";
 
-
-            star.style.top =
-                Math.random() * 100 + "%";
-
-
-            star.style.fontSize =
-                (
-                    6 +
-                    Math.random() * 10
-                ) + "px";
-
-
-            star.style.animationDelay =
-                Math.random() * 4 + "s";
-
-
-            star.style.animationDuration =
-                (
-                    2 +
-                    Math.random() * 4
-                ) + "s";
-
-
-            stars.appendChild(star);
-
-        }
+    starsContainer.appendChild(star);
+}
 
 
 
-        /* ==================================================
-           BUKA BUKU
-        ================================================== */
+/* =========================
+   LOVE BUBBLES
+========================= */
 
-        function openBook() {
-
-            document
-                .getElementById("cover")
-                .classList
-                .add("hide");
+const bubbleContainer =
+    document.getElementById("loveBubbles");
 
 
-            setTimeout(function() {
+for (let i = 0; i < 22; i++) {
 
-                document
-                    .getElementById("bookPage")
-                    .classList
-                    .add("show");
+    const bubble =
+        document.createElement("div");
 
-            }, 350);
+    bubble.className =
+        "love-bubble";
 
-        }
+    bubble.innerHTML =
+        Math.random() > .5
+        ? "♡"
+        : "♥";
+
+    bubble.style.left =
+        Math.random() * 100 + "%";
+
+    bubble.style.fontSize =
+        (Math.random() * 14 + 9) + "px";
+
+    bubble.style.animationDuration =
+        (Math.random() * 7 + 7) + "s";
+
+    bubble.style.animationDelay =
+        (Math.random() * 10) + "s";
+
+    bubbleContainer.appendChild(bubble);
+}
 
 
 
-        /* ==================================================
-           TOMBOL HALAMAN BERIKUTNYA
-        ================================================== */
+/* =========================
+   OPEN BOOK
+========================= */
 
-        function nextPage() {
+function openBook() {
 
-            alert(
-                "halaman selanjutnya segera datang ♡"
-            );
+    document
+        .getElementById("cover")
+        .classList.add("hide");
 
-        }
 
-    </script>
+    setTimeout(() => {
 
+        document
+            .getElementById("page01")
+            .classList.add("show");
+
+    }, 400);
+}
+
+
+
+/* =========================
+   PAGE NAVIGATION
+========================= */
+
+function goToPage(pageNumber) {
+
+    const pages = [
+
+        document.getElementById("page01"),
+
+        document.getElementById("page02")
+
+    ];
+
+
+    pages.forEach(page => {
+
+        page.classList.remove("show");
+
+    });
+
+
+    if (pageNumber === 1) {
+
+        pages[0].classList.add("show");
+
+    }
+
+
+    if (pageNumber === 2) {
+
+        pages[1].classList.add("show");
+
+    }
+
+
+    if (pageNumber >= 3) {
+
+        alert(
+            "halaman selanjutnya segera datang ♡"
+        );
+
+        pages[1].classList.add("show");
+
+    }
+
+}
+
+</script>
 
 </body>
-
 </html>
