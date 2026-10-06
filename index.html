@@ -1,0 +1,2354 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>for you ♡</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0b1120;
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ================= MUSIC ================= */
+
+        .music-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 182, 193, 0.4);
+
+            padding: 8px 16px;
+            border-radius: 20px;
+
+            color: #ffd1dc;
+            font-size: 0.75rem;
+            font-family: 'Poppins', sans-serif;
+
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            box-shadow: 0 0 15px rgba(255, 182, 193, 0.2);
+
+            transition: all 0.3s ease;
+        }
+
+        .music-btn.playing {
+            border-color: rgba(255, 182, 193, 0.8);
+
+            box-shadow:
+                0 0 20px rgba(255, 182, 193, 0.5);
+
+            background: rgba(255, 182, 193, 0.2);
+        }
+
+        /* ================= STARS ================= */
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background-image:
+                radial-gradient(
+                    1.5px 1.5px at 20px 30px,
+                    #ffffff,
+                    rgba(0,0,0,0)
+                ),
+                radial-gradient(
+                    2px 2px at 40px 70px,
+                    #ffffff,
+                    rgba(0,0,0,0)
+                ),
+                radial-gradient(
+                    1px 1px at 90px 40px,
+                    #ffffff,
+                    rgba(0,0,0,0)
+                ),
+                radial-gradient(
+                    2px 2px at 160px 120px,
+                    #ffffff,
+                    rgba(0,0,0,0)
+                ),
+                radial-gradient(
+                    1.5px 1.5px at 230px 190px,
+                    #ffffff,
+                    rgba(0,0,0,0)
+                ),
+                radial-gradient(
+                    2px 2px at 300px 300px,
+                    #ffffff,
+                    rgba(0,0,0,0)
+                );
+
+            background-repeat: repeat;
+            background-size: 350px 350px;
+
+            opacity: 0.6;
+            z-index: 1;
+        }
+
+        /* ================= PAGE ================= */
+
+        .page {
+            display: none;
+
+            position: relative;
+            z-index: 2;
+
+            width: 100%;
+            max-width: 420px;
+
+            padding: 20px;
+
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .page.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @keyframes fadeIn {
+
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+        /* ================= COVER ================= */
+
+        .cover-container {
+            text-align: center;
+            width: 100%;
+            padding: 20px 0;
+        }
+
+        .sub-header {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            color: #94a3b8;
+            margin-bottom: 8px;
+        }
+
+        .title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            font-style: italic;
+            font-weight: 400;
+            margin-bottom: 4px;
+
+            text-align: center;
+            width: 100%;
+        }
+
+        .heart {
+            font-style: normal;
+            color: #ffb6c1;
+        }
+
+        .tagline {
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            letter-spacing: 0.5px;
+            margin-bottom: 25px;
+        }
+
+        .image-wrapper {
+            position: relative;
+
+            margin: 10px auto 30px auto;
+
+            width: 220px;
+            height: 240px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .glow {
+            position: absolute;
+
+            width: 170px;
+            height: 170px;
+
+            background: rgba(255, 182, 193, 0.35);
+
+            border-radius: 50%;
+
+            filter: blur(35px);
+
+            z-index: 1;
+        }
+
+        .bear-img {
+            position: relative;
+            z-index: 2;
+
+            width: auto;
+            max-width: 100%;
+            height: 108%;
+
+            object-fit: contain;
+
+            filter:
+                drop-shadow(
+                    0 6px 12px rgba(0, 0, 0, 0.4)
+                );
+
+            animation:
+                float 3.5s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%, 100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+
+        }
+
+        .btn-open {
+            display: inline-block;
+
+            padding: 12px 36px;
+
+            border: 1px solid rgba(255, 255, 255, 0.25);
+
+            border-radius: 25px;
+
+            color: #ffffff;
+
+            text-decoration: none;
+
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+
+            background: rgba(255, 255, 255, 0.05);
+
+            backdrop-filter: blur(5px);
+
+            transition: all 0.3s ease;
+
+            cursor: pointer;
+
+            margin-bottom: 25px;
+        }
+
+        .btn-open:hover {
+            background: rgba(255, 255, 255, 0.15);
+
+            border-color:
+                rgba(255, 182, 193, 0.5);
+        }
+
+        .footer-note {
+            font-size: 0.65rem;
+            color: #64748b;
+
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        /* ================= CARD ================= */
+
+        .card {
+            background:
+                rgba(255, 255, 255, 0.03);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.08);
+
+            border-radius: 24px;
+
+            padding:
+                30px 24px 20px 24px;
+
+            width: 100%;
+
+            position: relative;
+
+            backdrop-filter: blur(12px);
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-header {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+
+            font-size: 0.75rem;
+
+            color: #64748b;
+
+            margin-bottom: 20px;
+        }
+
+        .moon-icon {
+            font-size: 1.2rem;
+            color: #e2e8f0;
+        }
+
+        .card-title {
+            font-family:
+                'Playfair Display', serif;
+
+            font-size: 2.2rem;
+
+            font-weight: 400;
+
+            text-align: center;
+
+            margin-bottom: 4px;
+        }
+
+        .card-subtitle {
+            font-size: 0.7rem;
+
+            color: #94a3b8;
+
+            text-align: center;
+
+            letter-spacing: 1.5px;
+
+            margin-bottom: 25px;
+        }
+
+        .card-content {
+            font-size: 0.82rem;
+
+            line-height: 1.7;
+
+            color: #cbd5e1;
+
+            text-align: center;
+
+            margin-bottom: 25px;
+
+            font-weight: 300;
+        }
+
+        .card-content p {
+            margin-bottom: 16px;
+        }
+
+        .highlight-text {
+            font-family:
+                'Playfair Display', serif;
+
+            font-size: 1.3rem;
+
+            font-style: italic;
+
+            color: #ffffff;
+
+            margin: 20px 0;
+
+            line-height: 1.4;
+        }
+
+        .small-bear {
+            width: 70px;
+
+            height: auto;
+
+            margin: 10px auto;
+
+            display: block;
+
+            filter:
+                drop-shadow(
+                    0 4px 8px rgba(0,0,0,0.3)
+                );
+        }
+
+        /* ================= NAVIGATION ================= */
+
+        .card-nav {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+
+            margin-top: 15px;
+
+            padding-top: 15px;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+
+            color: #64748b;
+
+            font-size: 0.75rem;
+
+            font-family:
+                'Poppins', sans-serif;
+
+            cursor: pointer;
+
+            transition: color 0.3s ease;
+
+            padding: 5px 10px;
+        }
+
+        .nav-btn:hover {
+            color: #ffb6c1;
+        }
+
+        /* ================= PAGE 4 ================= */
+
+        .memory-page {
+            text-align: center;
+        }
+
+        .memory-list {
+            width: 100%;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 13px;
+
+            margin-top: 8px;
+
+            margin-bottom: 12px;
+        }
+
+        .memory-item {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            text-align: left;
+        }
+
+        .memory-photo {
+            width: 105px;
+            height: 82px;
+
+            flex-shrink: 0;
+
+            padding: 4px;
+
+            background:
+                rgba(255, 255, 255, 0.07);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.14);
+
+            border-radius: 14px;
+
+            box-shadow:
+                0 6px 18px rgba(0, 0, 0, 0.25),
+                0 0 18px rgba(255, 182, 193, 0.05);
+        }
+
+        .memory-photo img {
+            width: 100%;
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+
+            border-radius: 10px;
+        }
+
+        .memory-text {
+            flex: 1;
+        }
+
+        .memory-number {
+            color: #f3a9c5;
+
+            font-size: 0.65rem;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 3px;
+        }
+
+        .memory-title {
+            color: #ffffff;
+
+            font-size: 0.82rem;
+
+            font-weight: 500;
+
+            margin-bottom: 3px;
+        }
+
+        .memory-caption {
+            color: #cbd5e1;
+
+            font-size: 0.68rem;
+
+            line-height: 1.5;
+
+            font-weight: 300;
+
+            margin: 0;
+        }
+
+        /* ================= PAGE 5 ================= */
+
+        .you-page {
+            text-align: center;
+        }
+
+        .you-page .card-subtitle {
+            margin-bottom: 30px;
+        }
+
+        .you-content {
+            position: relative;
+
+            padding:
+                8px 8px 5px;
+        }
+
+        .you-main {
+            font-family:
+                'Playfair Display', serif;
+
+            font-size: 1.7rem;
+
+            font-style: italic;
+
+            color: #ffffff;
+
+            line-height: 1.35;
+
+            margin-bottom: 24px;
+        }
+
+        .you-line {
+            font-size: 0.78rem;
+
+            line-height: 1.8;
+
+            color: #cbd5e1;
+
+            font-weight: 300;
+
+            margin-bottom: 18px;
+        }
+
+        .you-line span {
+            color: #ffffff;
+        }
+
+        .you-divider {
+            width: 45px;
+            height: 1px;
+
+            background:
+                rgba(255, 182, 193, 0.55);
+
+            margin: 24px auto;
+        }
+
+        .you-ending {
+            font-family:
+                'Playfair Display', serif;
+
+            font-size: 1.15rem;
+
+            font-style: italic;
+
+            line-height: 1.6;
+
+            color: #ffffff;
+
+            margin-top: 5px;
+        }
+
+        .you-heart {
+            display: block;
+
+            color: #ffb6c1;
+
+            font-size: 1.2rem;
+
+            margin-top: 12px;
+        }
+
+        .tiny-note {
+            position: absolute;
+
+            font-size: 0.55rem;
+
+            color:
+                rgba(255, 182, 193, 0.55);
+
+            letter-spacing: 2px;
+        }
+
+        .note-one {
+            top: 0;
+            left: 0;
+
+            transform: rotate(-8deg);
+        }
+
+        .note-two {
+            top: 3px;
+            right: 0;
+
+            transform: rotate(8deg);
+        }
+
+        /* ================= PAGE 6 ================= */
+
+        .little-things-page {
+            text-align: center;
+        }
+
+        .little-things-page .card-subtitle {
+            margin-bottom: 28px;
+        }
+
+        .little-content {
+            padding: 0 5px;
+        }
+
+        .little-intro {
+            font-family:
+                'Playfair Display', serif;
+
+            font-size: 1.25rem;
+
+            font-style: italic;
+
+            line-height: 1.5;
+
+            color: #ffffff;
+
+            margin-bottom: 25px;
+        }
+
+        .little-list {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 13px;
+
+            text-align: left;
+        }
+
+        .little-item {
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 12px;
+
+            padding: 11px 12px;
+
+            border-left:
+                1px solid rgba(255, 182, 193, 0.45);
+
+            background:
+                rgba(255, 255, 255, 0.025);
+
+            border-radius:
+                0 12px 12px 0;
+        }
+
+        .little-dot {
+            color: #ffb6c1;
+
+            font-size: 0.7rem;
+
+            margin-top: 3px;
+        }
+
+        .little-item p {
+            color: #cbd5e1;
+
+            font-size: 0.72rem;
+
+            line-height: 1.6;
+
+            font-weight: 300;
+
+            margin: 0;
+        }
+
+        .little-item span {
+            color: #ffffff;
+        }
+
+        .little-ending {
+            font-family:
+                'Playfair Display', serif;
+
+            font-size: 1rem;
+
+            font-style: italic;
+
+            line-height: 1.6;
+
+            color: #ffffff;
+
+            margin-top: 25px;
+        }
+
+        .little-heart {
+            color: #ffb6c1;
+        }
+
+
+        /* =====================================================
+           PAGE 7 — SONGS
+        ===================================================== */
+
+        .songs-page {
+            text-align: center;
+        }
+
+        .songs-page .card-subtitle {
+            margin-bottom: 22px;
+        }
+
+        .songs-intro {
+            font-family:
+                'Playfair Display', serif;
+
+            font-size: 1rem;
+
+            font-style: italic;
+
+            line-height: 1.5;
+
+            color: #ffffff;
+
+            margin-bottom: 22px;
+        }
+
+        .song-list {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 11px;
+
+            text-align: left;
+        }
+
+        .song-card {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 9px;
+
+            background:
+                rgba(255, 255, 255, 0.035);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.07);
+
+            border-radius: 14px;
+
+            transition:
+                transform 0.25s ease,
+                background 0.25s ease;
+
+            cursor: pointer;
+        }
+
+        .song-card:hover {
+            transform: translateY(-2px);
+
+            background:
+                rgba(255, 255, 255, 0.07);
+        }
+
+        .song-cover {
+            width: 58px;
+            height: 58px;
+
+            flex-shrink: 0;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+
+            border:
+                1px solid rgba(255, 255, 255, 0.12);
+
+            box-shadow:
+                0 5px 15px rgba(0, 0, 0, 0.25);
+        }
+
+        .song-cover img {
+            width: 100%;
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+        }
+
+        .song-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .song-number {
+            font-size: 0.55rem;
+
+            letter-spacing: 2px;
+
+            color: #f3a9c5;
+
+            margin-bottom: 2px;
+        }
+
+        .song-title {
+            color: #ffffff;
+
+            font-size: 0.78rem;
+
+            font-weight: 500;
+
+            margin-bottom: 1px;
+        }
+
+        .song-artist {
+            color: #94a3b8;
+
+            font-size: 0.6rem;
+
+            margin-bottom: 4px;
+        }
+
+        .song-reason {
+            color: #cbd5e1;
+
+            font-size: 0.61rem;
+
+            line-height: 1.45;
+
+            font-style: italic;
+
+            font-weight: 300;
+        }
+
+        .song-icon {
+            color: #ffb6c1;
+
+            font-size: 0.8rem;
+
+            padding-right: 4px;
+        }
+
+        .songs-ending {
+            font-family:
+                'Playfair Display', serif;
+
+            font-size: 0.95rem;
+
+            font-style: italic;
+
+            color: #ffffff;
+
+            line-height: 1.6;
+
+            margin-top: 22px;
+        }
+
+        .songs-ending span {
+            color: #ffb6c1;
+        }
+
+
+        /* ================= PAGE 9 ================= */
+
+        .final-page {
+            text-align: center;
+
+            min-height: 520px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: center;
+        }
+
+        .final-bear {
+            width: 210px;
+
+            max-width: 75%;
+
+            height: auto;
+
+            object-fit: contain;
+
+            margin-bottom: 28px;
+
+            filter:
+                drop-shadow(
+                    0 8px 15px rgba(0, 0, 0, 0.4)
+                );
+
+            animation:
+                finalFloat 3.5s ease-in-out infinite;
+        }
+
+        @keyframes finalFloat {
+
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-7px);
+            }
+
+        }
+
+        .final-birthday {
+            font-family:
+                'Playfair Display', serif;
+
+            font-size: 1.45rem;
+
+            font-style: italic;
+
+            color: #ffffff;
+
+            line-height: 1.5;
+
+            margin-bottom: 12px;
+        }
+
+        .final-love {
+            font-size: 0.72rem;
+
+            line-height: 1.7;
+
+            color: #cbd5e1;
+
+            font-weight: 300;
+
+            max-width: 270px;
+        }
+
+        .final-heart {
+            color: #ffb6c1;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 380px) {
+
+            .card {
+                padding:
+                    25px 18px 18px;
+            }
+
+            .card-title {
+                font-size: 1.9rem;
+            }
+
+            .song-cover {
+                width: 52px;
+                height: 52px;
+            }
+
+            .song-reason {
+                font-size: 0.57rem;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- ================= MUSIC ================= -->
+
+    <audio
+        id="bgMusic"
+        loop
+        preload="auto"
+    >
+        <source
+            src="love.mp3"
+            type="audio/mpeg"
+        >
+    </audio>
+
+
+    <button
+        id="musicBtn"
+        class="music-btn"
+        onclick="toggleMusic()"
+    >
+
+        <span class="music-icon">
+            ♫
+        </span>
+
+        <span id="musicText">
+            Tap to Play Music ♫
+        </span>
+
+    </button>
+
+
+    <!-- ================= STARS ================= -->
+
+    <div class="stars"></div>
+
+
+    <!-- =====================================================
+         COVER
+    ====================================================== -->
+
+    <div
+        id="page-cover"
+        class="page active"
+    >
+
+        <div class="cover-container">
+
+            <p class="sub-header">
+                ✧ A LITTLE SOMETHING ✧
+            </p>
+
+            <h1 class="title">
+                for you
+                <span class="heart">♡</span>
+            </h1>
+
+            <p class="tagline">
+                made with love, from your love.
+            </p>
+
+            <div class="image-wrapper">
+
+                <div class="glow"></div>
+
+                <img
+                    src="176455-removebg-preview.png"
+                    alt="Beruang"
+                    class="bear-img"
+                >
+
+            </div>
+
+            <button
+                class="btn-open"
+                onclick="goToPage('page-1')"
+            >
+                open the book ♡
+            </button>
+
+            <p class="footer-note">
+                ✧ A TINY BOOK FULL OF LOVE ✧
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         PAGE 1
+    ====================================================== -->
+
+    <div
+        id="page-1"
+        class="page"
+    >
+
+        <div class="card">
+
+            <div class="card-header">
+                <span>01</span>
+                <span class="moon-icon">🌙</span>
+            </div>
+
+            <h2 class="card-title">
+                happy birthday,<br>
+                my love ♡
+            </h2>
+
+            <p class="card-subtitle">
+                a little wish for you
+            </p>
+
+            <div class="card-content">
+
+                <p>
+                    I hope this new age brings good things
+                    your way, one by one. ♡
+                </p>
+
+                <p>
+                    I hope you always have reasons to smile,
+                    the courage to go after what you want,
+                    and people around you who make you feel loved.
+                </p>
+
+            </div>
+
+            <div class="card-nav">
+
+                <button
+                    class="nav-btn"
+                    onclick="goToPage('page-cover')"
+                >
+                    ← previous
+                </button>
+
+                <button
+                    class="nav-btn"
+                    onclick="goToPage('page-2')"
+                >
+                    next page →
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         PAGE 2
+    ====================================================== -->
+
+    <div
+        id="page-2"
+        class="page"
+    >
+
+        <div class="card">
+
+            <div class="card-header">
+                <span>02</span>
+                <span class="moon-icon">🌙</span>
+            </div>
+
+            <h2 class="card-title">
+                if you ever forget...
+            </h2>
+
+            <p class="card-subtitle">
+                come back to this page ♡
+            </p>
+
+            <div class="card-content">
+
+                <p>
+                    you are loved. ♡
+                </p>
+
+                <p>
+                    you are never alone.
+                </p>
+
+                <p>
+                    you always have a place to come home to.
+                    <br>
+                    and I'll always be here to listen.
+                </p>
+
+                <img
+                    src="176455-removebg-preview.png"
+                    alt="Beruang Kecil"
+                    class="small-bear"
+                >
+
+                <div class="highlight-text">
+                    you'll always have<br>
+                    a home in me. ♡
+                </div>
+
+            </div>
+
+            <div class="card-nav">
+
+                <button
+                    class="nav-btn"
+                    onclick="goToPage('page-1')"
+                >
+                    ← previous
+                </button>
+
+                <button
+                    class="nav-btn"
+                    onclick="goToPage('page-3')"
+                >
+                    next page →
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         PAGE 3
+    ====================================================== -->
+
+    <div
+        id="page-3"
+        class="page"
+    >
+
+        <div class="card">
+
+            <div class="card-header">
+                <span>03</span>
+                <span class="moon-icon">🌙</span>
+            </div>
+
+            <h2 class="card-title">
+                one more thing ♡
+            </h2>
+
+            <div
+                class="card-content"
+                style="
+                    text-align: left;
+                    font-size: 0.78rem;
+                "
+            >
+
+                <p>
+                    I hope this year is kinder to you,
+                    more happy days, less things that make you tired,
+                    and more moments you'll look back on with a smile. ♡
+                </p>
+
+                <p>
+                    and if someday things get a little too much,
+                    please remember that you don't have to go through it alone.
+                </p>
+
+                <p>
+                    you have me. you can always tell me about your day,
+                    the little things that happened,
+                    the random things on your mind,
+                    or anything that's been bothering you. ♡
+                </p>
+
+                <p>
+                    I might not always know what to say,
+                    and I might not always know how to make things better,
+                    but I'll always be here to listen.
+                </p>
+
+                <p>
+                    so whenever you need someone to talk to,
+                    someone to stay,
+                    or just a place to rest for a while,
+                    you can always come to me.
+                </p>
+
+                <p
+                    style="
+                        text-align: center;
+                        margin-top: 15px;
+                    "
+                >
+                    I hope you know that you'll always have
+                    a home in me. ♡
+                </p>
+
+            </div>
+
+            <div class="card-nav">
+
+                <button
+                    class="nav-btn"
+                    onclick="goToPage('page-2')"
+                >
+                    ← previous
+                </button>
+
+                <button
+                    class="nav-btn"
+                    onclick="goToPage('page-4')"
+                >
+                    next page →
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         PAGE 4
+    ====================================================== -->
+
+    <div
+        id="page-4"
+        class="page"
+    >
+
+        <div class="card memory-page">
+
+            <div class="card-header">
+                <span>04</span>
+                <span class="moon-icon">🌙</span>
+            </div>
+
+            <h2 class="card-title">
+                moments
+            </h2>
+
+            <p class="card-subtitle">
+                a few moments i wanted to keep ♡
+            </p>
+
+            <div class="memory-list">
+
+
+                <div class="memory-item">
+
+                    <div class="memory-photo">
+
+                        <img
+                            src="foto1.jpg"
+                            alt="Memory 1"
+                        >
+
+                    </div>
+
+                    <div class="memory-text">
+
+                        <div class="memory-number">
+                            01
+                        </div>
+
+                        <div class="memory-title">
+                            this little moment
+                        </div>
+
+                        <p class="memory-caption">
+                            one of those moments that
+                            quietly became special to me.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="memory-item">
+
+                    <div class="memory-photo">
+
+                        <img
+                            src="foto2.jpg"
+                            alt="Memory 2"
+                        >
+
+                    </div>
+
+                    <div class="memory-text">
+
+                        <div class="memory-number">
+                            02
+                        </div>
+
+                        <div class="memory-title">
+                            another one
+                        </div>
+
+                        <p class="memory-caption">
+                            somehow, even the simplest
+                            moments feel different with you.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="memory-item">
+
+                    <div class="memory-photo">
+
+                        <img
+                            src="foto3.jpg"
+                            alt="Memory 3"
+                        >
+
+                    </div>
+
+                    <div class="memory-text">
+
+                        <div class="memory-number">
+                            03
+                        </div>
+
+                        <div class="memory-title">
+                            one i'll remember
+                        </div>
+
+                        <p class="memory-caption">
+                            a small piece of our story
+                            that i want to keep.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <div class="card-nav">
+
+                <button
+                    class="nav-btn"
+                    onclick="goToPage('page-3')"
+                >
+                    ← previous
+                </button>
+
+                <button
+                    class="nav-btn"
+                    onclick="goToPage('page-5')"
+                >
+                    next page →
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         PAGE 5
+    ====================================================== -->
+
+    <div
+        id="page-5"
+        class="page"
+    >
+
+        <div class="card you-page">
+
+            <div class="card-header">
+                <span>05</span>
+                <span class="moon-icon">🌙</span>
+            </div>
+
+            <h2 class="card-title">
+                somehow, it's you
+            </h2>
+
+            <p class="card-subtitle">
+                and i don't really know how else to put it ♡
+            </p>
+
+            <div class="you-content">
+
+                <span class="tiny-note note-one">
+                    ♡ little things
+                </span>
+
+                <span class="tiny-note note-two">
+                    just you
+                </span>
+
+                <div class="you-main">
+                    somehow,<br>
+                    it's always you.
+                </div>
+
+                <p class="you-line">
+                    out of all the little things
+                    i could've fallen for,
+                    it was your laugh,
+                    the way you tease me,
+                    and the way you care.
+                </p>
+
+                <p class="you-line">
+                    even the annoying little things
+                    somehow became familiar.
+                    the tengil side,
+                    the jealousy,
+                    all of it.
+                </p>
+
+                <div class="you-divider"></div>
+
+                <p class="you-line">
+                    i don't think i can explain exactly when
+                    you became this important to me.
+                </p>
+
+                <div class="you-ending">
+
+                    you just did.
+                    <br>
+
+                    and i'm really glad you did.
+
+                    <span class="you-heart">
+                        ♡
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="card-nav">
+
+                <button
+                    class="nav-btn"
+                    onclick="goToPage('page-4')"
+                >
+                    ← previous
+                </button>
+
+                <button
+                    class="nav-btn"
+                    onclick="goToPage('page-6')"
+                >
+                    next page →
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         PAGE 6
+    ====================================================== -->
+
+    <div
+        id="page-6"
+        class="page"
+    >
+
+        <div class="card little-things-page">
+
+            <div class="card-header">
+                <span>06</span>
+                <span class="moon-icon">🌙</span>
+            </div>
+
+            <h2 class="card-title">
+                for all the little things
+            </h2>
+
+            <p class="card-subtitle">
+                the little things that became my favorite ♡
+            </p>
+
+            <div class="little-content">
+
+                <div class="little-intro">
+                    maybe it's not always<br>
+                    the big things that matter.
+                </div>
+
+                <div class="little-list">
+
+
+                    <div class="little-item">
+
+                        <div class="little-dot">
+                            ♡
+                        </div>
+
+                        <p>
+                            the way you text me,
+                            especially when you suddenly get all sweet
+                            and somehow make me blush through a screen.
+                        </p>
+
+                    </div>
+
+
+                    <div class="little-item">
+
+                        <div class="little-dot">
+                            ♡
+                        </div>
+
+                        <p>
+                            the way you tease me just to see
+                            how i'll react,
+                            and somehow i end up getting shy anyway.
+                        </p>
+
+                    </div>
+
+
+                    <div class="little-item">
+
+                        <div class="little-dot">
+                            ♡
+                        </div>
+
+                        <p>
+                            how annoyingly
+                            <span>tengil</span>
+                            you can be,
+                            and somehow you still manage to make me smile.
+                        </p>
+
+                    </div>
+
+
+                    <div class="little-item">
+
+                        <div class="little-dot">
+                            ♡
+                        </div>
+
+                        <p>
+                            the way you care about me,
+                            even in the smallest things,
+                            and how you always manage to make me feel loved.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+                <div class="little-ending">
+
+                    somehow, all those little things
+                    <br>
+                    became a part of why i love you.
+
+                    <div class="little-heart">
+                        ♡
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="card-nav">
+
+                <button
+                    class="nav-btn"
+                    onclick="goToPage('page-5')"
+                >
+                    ← previous
+                </button>
+
+                <button
+                    class="nav-btn"
+                    onclick="goToPage('page-7')"
+                >
+                    next page →
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         PAGE 7 — SONGS THAT REMIND ME OF YOU
+    ====================================================== -->
+
+    <div
+        id="page-7"
+        class="page"
+    >
+
+        <div class="card songs-page">
+
+            <div class="card-header">
+
+                <span>
+                    07
+                </span>
+
+                <span class="moon-icon">
+                    ♪
+                </span>
+
+            </div>
+
+
+            <h2 class="card-title">
+                songs that feel like you
+            </h2>
+
+
+            <p class="card-subtitle">
+                a few songs that somehow remind me of you ♡
+            </p>
+
+
+            <div class="songs-intro">
+
+                some songs are just songs.<br>
+                and some songs sound a little more like you.
+
+            </div>
+
+
+            <div class="song-list">
+
+
+                <!-- SONG 1 -->
+
+                <div
+                    class="song-card"
+                    onclick="playSong('song1')"
+                >
+
+                    <div class="song-cover">
+
+                        <img
+                            src="song1.jpg"
+                            alt="Jatuh Suka - Tulus"
+                        >
+
+                    </div>
+
+
+                    <div class="song-info">
+
+                        <div class="song-number">
+                            01
+                        </div>
+
+                        <div class="song-title">
+                            Jatuh Suka
+                        </div>
+
+                        <div class="song-artist">
+                            Tulus
+                        </div>
+
+                        <div class="song-reason">
+                            this one feels like the beginning
+                            of me falling for you.
+                        </div>
+
+                    </div>
+
+
+                    <div class="song-icon">
+                        ♫
+                    </div>
+
+                </div>
+
+
+                <!-- SONG 2 -->
+
+                <div
+                    class="song-card"
+                    onclick="playSong('song2')"
+                >
+
+                    <div class="song-cover">
+
+                        <img
+                            src="song2.jpg"
+                            alt="Best Part"
+                        >
+
+                    </div>
+
+
+                    <div class="song-info">
+
+                        <div class="song-number">
+                            02
+                        </div>
+
+                        <div class="song-title">
+                            Best Part
+                        </div>
+
+                        <div class="song-artist">
+                            Daniel Caesar ft. H.E.R.
+                        </div>
+
+                        <div class="song-reason">
+                            because somehow,
+                            you became my favorite part of my days.
+                        </div>
+
+                    </div>
+
+
+                    <div class="song-icon">
+                        ♫
+                    </div>
+
+                </div>
+
+
+                <!-- SONG 3 -->
+
+                <div
+                    class="song-card"
+                    onclick="playSong('song3')"
+                >
+
+                    <div class="song-cover">
+
+                        <img
+                            src="song3.jpg"
+                            alt="Until I Found You"
+                        >
+
+                    </div>
+
+
+                    <div class="song-info">
+
+                        <div class="song-number">
+                            03
+                        </div>
+
+                        <div class="song-title">
+                            Until I Found You
+                        </div>
+
+                        <div class="song-artist">
+                            Stephen Sanchez
+                        </div>
+
+                        <div class="song-reason">
+                            this one just has that
+                            "i found my person" kind of feeling.
+                        </div>
+
+                    </div>
+
+
+                    <div class="song-icon">
+                        ♫
+                    </div>
+
+                </div>
+
+
+                <!-- SONG 4 -->
+
+                <div
+                    class="song-card"
+                    onclick="playSong('song4')"
+                >
+
+                    <div class="song-cover">
+
+                        <img
+                            src="song4.jpg"
+                            alt="Crush - David Archuleta"
+                        >
+
+                    </div>
+
+
+                    <div class="song-info">
+
+                        <div class="song-number">
+                            04
+                        </div>
+
+                        <div class="song-title">
+                            Crush
+                        </div>
+
+                        <div class="song-artist">
+                            David Archuleta
+                        </div>
+
+                        <div class="song-reason">
+                            because it reminds me of
+                            that stupidly sweet feeling of liking someone.
+                        </div>
+
+                    </div>
+
+
+                    <div class="song-icon">
+                        ♫
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="card-nav">
+
+                <button
+                    class="nav-btn"
+                    onclick="goToPage('page-6')"
+                >
+                    ← previous
+                </button>
+
+                <button
+                    class="nav-btn"
+                    onclick="goToPage('page-8')"
+                >
+                    next page →
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         PAGE 8
+    ====================================================== -->
+
+    <div
+        id="page-8"
+        class="page"
+    >
+
+        <div class="card">
+
+            <div class="card-header">
+                <span>08</span>
+                <span class="moon-icon">🌙</span>
+            </div>
+
+            <h2 class="card-title">
+                before you close this ♡
+            </h2>
+
+            <p class="card-subtitle">
+                one last thing i want you to know
+            </p>
+
+            <div class="card-content">
+
+                <p>
+                    i don't know what the future will look like,
+                    or where we'll be someday.
+                </p>
+
+                <p>
+                    but right now,
+                    i'm just really grateful that somehow,
+                    out of all the people in this world,
+                    i got to meet you.
+                </p>
+
+                <p>
+                    thank you for every little thing,
+                    every laugh, every random conversation,
+                    every time you made me smile,
+                    and even every little annoyance
+                    that somehow became something i love too.
+                </p>
+
+                <p>
+                    i hope when you look back at this someday,
+                    you remember how much of a special part
+                    of my life you became without me even realizing it.
+                </p>
+
+                <div class="highlight-text">
+
+                    whatever happens,
+                    i hope you always know
+                    that i'm really glad it was you.
+
+                    <br><br>
+
+                    and i'm really glad
+                    i got to love you.
+
+                    ♡
+
+                </div>
+
+            </div>
+
+
+            <div class="card-nav">
+
+                <button
+                    class="nav-btn"
+                    onclick="goToPage('page-7')"
+                >
+                    ← previous
+                </button>
+
+                <button
+                    class="nav-btn"
+                    onclick="goToPage('page-9')"
+                >
+                    one last page →
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         PAGE 9
+    ====================================================== -->
+
+    <div
+        id="page-9"
+        class="page"
+    >
+
+        <div class="card final-page">
+
+            <img
+                src="176455-removebg-preview.png"
+                alt="Beruang"
+                class="final-bear"
+            >
+
+            <div class="final-birthday">
+                happy birthday, kesayangan.
+                <span class="final-heart">♡</span>
+            </div>
+
+            <div class="final-love">
+                i love you more than this little book could ever fit.
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         SONG AUDIO
+    ====================================================== -->
+
+    <audio
+        id="song1"
+        preload="none"
+    >
+        <source
+            src="song1.mp3"
+            type="audio/mpeg"
+        >
+    </audio>
+
+    <audio
+        id="song2"
+        preload="none"
+    >
+        <source
+            src="song2.mp3"
+            type="audio/mpeg"
+        >
+    </audio>
+
+    <audio
+        id="song3"
+        preload="none"
+    >
+        <source
+            src="song3.mp3"
+            type="audio/mpeg"
+        >
+    </audio>
+
+    <audio
+        id="song4"
+        preload="none"
+    >
+        <source
+            src="song4.mp3"
+            type="audio/mpeg"
+        >
+    </audio>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+        const music =
+            document.getElementById('bgMusic');
+
+        const musicBtn =
+            document.getElementById('musicBtn');
+
+        const musicText =
+            document.getElementById('musicText');
+
+
+        function toggleMusic() {
+
+            if (music.paused) {
+
+                music.play().then(() => {
+
+                    musicText.textContent =
+                        'Music Playing ♪';
+
+                    musicBtn.classList.add(
+                        'playing'
+                    );
+
+                }).catch(err => {
+
+                    console.log(
+                        "Audio error:",
+                        err
+                    );
+
+                });
+
+            } else {
+
+                music.pause();
+
+                musicText.textContent =
+                    'Music Paused ♫';
+
+                musicBtn.classList.remove(
+                    'playing'
+                );
+
+            }
+
+        }
+
+
+        document.body.addEventListener(
+            'click',
+            function() {
+
+                if (music.paused) {
+
+                    music.play().then(() => {
+
+                        musicText.textContent =
+                            'Music Playing ♪';
+
+                        musicBtn.classList.add(
+                            'playing'
+                        );
+
+                    }).catch(() => {});
+
+                }
+
+            },
+            { once: true }
+        );
+
+
+        function goToPage(pageId) {
+
+            const pages =
+                document.querySelectorAll('.page');
+
+            pages.forEach(page => {
+
+                page.classList.remove(
+                    'active'
+                );
+
+            });
+
+
+            const targetPage =
+                document.getElementById(pageId);
+
+
+            if (targetPage) {
+
+                targetPage.classList.add(
+                    'active'
+                );
+
+            }
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
+        }
+
+
+        /* ================= SONG PLAYER ================= */
+
+        let currentSong = null;
+
+
+        function playSong(songId) {
+
+            const selectedSong =
+                document.getElementById(songId);
+
+
+            if (!selectedSong) return;
+
+
+            /*
+             * Kalau lagu yang sama diklik lagi,
+             * pause.
+             */
+
+            if (
+                currentSong === selectedSong &&
+                !selectedSong.paused
+            ) {
+
+                selectedSong.pause();
+
+                return;
+            }
+
+
+            /*
+             * Stop lagu lain.
+             */
+
+            const allSongs =
+                document.querySelectorAll(
+                    'audio'
+                );
+
+
+            allSongs.forEach(song => {
+
+                if (
+                    song !== music &&
+                    song !== selectedSong
+                ) {
+
+                    song.pause();
+                    song.currentTime = 0;
+
+                }
+
+            });
+
+
+            /*
+             * Matikan musik background
+             * supaya dua lagu tidak bunyi bersamaan.
+             */
+
+            music.pause();
+
+
+            selectedSong.play().catch(err => {
+
+                console.log(
+                    "Song error:",
+                    err
+                );
+
+            });
+
+
+            currentSong =
+                selectedSong;
+
+        }
+
+    </script>
+
+</body>
+</html>
