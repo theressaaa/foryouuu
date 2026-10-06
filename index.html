@@ -1,348 +1,150 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>For You ♡</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            overflow: hidden;
+            background: #070d20;
+            font-family: Georgia, serif;
+        }
+
+        .cover {
+            width: 100%;
+            height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            background:
+                radial-gradient(
+                    circle,
+                    #293f6b,
+                    #172746 45%,
+                    #070d20 100%
+                );
+        }
+
+        .content {
+            width: 100%;
+            padding: 25px;
+        }
+
+        .small {
+            color: #aebde0;
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 10px 0 5px;
+
+            color: #f8e9ef;
+
+            font-size: 60px;
+            font-weight: normal;
+            font-style: italic;
+        }
+
+        .subtitle {
+            color: #bac8e4;
+            font-size: 13px;
+        }
+
+        .heart-box {
+            margin: 35px auto;
+
+            width: 140px;
+            height: 140px;
+
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .heart {
+            width: 100%;
+            height: 100%;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        button {
+            padding: 13px 28px;
+
+            border: 1px solid #7183aa;
+            border-radius: 30px;
 
-<title>For You ♡</title>
+            background: rgba(40, 60, 100, 0.7);
 
-<style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+            color: #f8eaf0;
 
-html,
-body {
-    width: 100%;
-    height: 100%;
-}
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
 
-body {
-    overflow: hidden;
-    background: #070d20;
-    font-family: Georgia, serif;
-}
+        .bottom {
+            margin-top: 20px;
 
+            color: #8294bc;
 
-/* ===== BACKGROUND ===== */
-
-.cover {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    height: 100dvh;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    overflow: hidden;
-
-    background:
-        radial-gradient(
-            circle at center 42%,
-            #293f6b 0%,
-            #172746 38%,
-            #0b142b 68%,
-            #070d20 100%
-        );
-}
-
-
-/* ===== STARS ===== */
-
-.stars {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-}
-
-.star {
-    position: absolute;
-    color: #dce7ff;
-    opacity: 0.5;
-
-    animation: twinkle 3s infinite ease-in-out;
-}
-
-@keyframes twinkle {
-    0%, 100% {
-        opacity: 0.2;
-        transform: scale(0.8);
-    }
-
-    50% {
-        opacity: 0.9;
-        transform: scale(1.2);
-    }
-}
-
-
-/* ===== CONTENT ===== */
-
-.content {
-    position: relative;
-    z-index: 5;
-
-    width: 100%;
-    max-width: 430px;
-
-    padding: 20px;
-
-    text-align: center;
-
-    animation: fadeIn 1s ease;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-/* ===== TEXT ===== */
-
-.top-text {
-    margin-bottom: 8px;
-
-    color: #aebde0;
-
-    font-family: Arial, sans-serif;
-    font-size: 9px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-}
-
-h1 {
-    color: #f8e9ef;
-
-    font-size: clamp(48px, 14vw, 70px);
-    font-weight: normal;
-    font-style: italic;
-
-    letter-spacing: -2px;
-
-    text-shadow:
-        0 0 25px rgba(220, 230, 255, 0.15);
-}
-
-.subtitle {
-    margin-top: 8px;
-
-    color: #bac8e4;
-
-    font-size: 13px;
-    letter-spacing: 0.5px;
-}
-
-
-/* ===== HEART ===== */
-
-.heart-container {
-    position: relative;
-
-    width: 220px;
-    height: 220px;
-
-    margin: 18px auto 12px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    animation: floating 4s ease-in-out infinite;
-}
-
-@keyframes floating {
-    0%, 100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-9px);
-    }
-}
-
-.heart {
-    width: 145px;
-    height: 145px;
-
-    filter:
-        drop-shadow(
-            0 15px 25px rgba(0,0,0,0.25)
-        )
-        drop-shadow(
-            0 0 25px rgba(245,160,195,0.2)
-        );
-
-    animation: heartbeat 2.5s ease-in-out infinite;
-}
-
-@keyframes heartbeat {
-    0%, 100% {
-        transform: scale(1);
-    }
-
-    45% {
-        transform: scale(1.045);
-    }
-
-    55% {
-        transform: scale(1);
-    }
-}
-
-
-/* ===== HEART SPARKLES ===== */
-
-.sparkle {
-    position: absolute;
-
-    color: #f7dce9;
-
-    animation:
-        sparkle 3s ease-in-out infinite;
-}
-
-.sparkle.one {
-    top: 28px;
-    left: 20px;
-    font-size: 20px;
-}
-
-.sparkle.two {
-    top: 55px;
-    right: 18px;
-    font-size: 14px;
-
-    animation-delay: 1s;
-}
-
-.sparkle.three {
-    bottom: 28px;
-    left: 38px;
-    font-size: 12px;
-
-    animation-delay: 1.6s;
-}
-
-@keyframes sparkle {
-    0%, 100% {
-        opacity: 0.25;
-        transform: scale(0.8) rotate(0deg);
-    }
-
-    50% {
-        opacity: 1;
-        transform: scale(1.2) rotate(10deg);
-    }
-}
-
-
-/* ===== BUTTON ===== */
-
-.open-btn {
-    border: 1px solid rgba(190, 207, 242, 0.55);
-    border-radius: 50px;
-
-    padding: 13px 28px;
-
-    background: rgba(35, 52, 88, 0.65);
-
-    color: #f8eaf0;
-
-    font-family: Arial, sans-serif;
-    font-size: 13px;
-    letter-spacing: 1px;
-
-    cursor: pointer;
-
-    transition: 0.3s ease;
-}
-
-.open-btn:active {
-    transform: scale(0.95);
-}
-
-.open-btn:hover {
-    background: rgba(60, 80, 120, 0.8);
-
-    box-shadow:
-        0 0 30px rgba(170, 190, 240, 0.18);
-}
-
-
-/* ===== BOTTOM ===== */
-
-.bottom-text {
-    margin-top: 18px;
-
-    color: #8294bc;
-
-    font-family: Arial, sans-serif;
-    font-size: 9px;
-    letter-spacing: 2px;
-}
-
-
-/* ===== SMALL SCREEN ===== */
-
-@media (max-height: 680px) {
-
-    .content {
-        transform: scale(0.88);
-    }
-
-    .heart-container {
-        margin-top: 5px;
-        margin-bottom: 5px;
-    }
-}
-</style>
+            font-family: Arial, sans-serif;
+            font-size: 9px;
+            letter-spacing: 2px;
+        }
+    </style>
 </head>
-
 
 <body>
 
 <div class="cover">
 
-    <!-- BINTANG -->
-    <div class="stars" id="stars"></div>
-
-
-    <!-- ISI COVER -->
     <div class="content">
 
-        <div class="top-text">
+        <div class="small">
             a little something
         </div>
-
 
         <h1>
             for you ♡
         </h1>
-
 
         <div class="subtitle">
             made with love, just for you.
         </div>
 
 
-        <!-- HEART -->
-        <div class="heart-container">
-
-            <div class="sparkle one">✧</div>
-            <div class="sparkle two">✦</div>
-            <div class="sparkle three">·</div>
+        <div class="heart-box">
 
             <svg
                 class="heart"
@@ -352,18 +154,18 @@ h1 {
                 <defs>
 
                     <linearGradient
-                        id="heartGradient"
-                        x1="0%"
-                        y1="0%"
-                        x2="100%"
-                        y2="100%">
+                        id="pink"
+                        x1="0"
+                        y1="0"
+                        x2="1"
+                        y2="1">
 
                         <stop
                             offset="0%"
                             stop-color="#ffdce9"/>
 
                         <stop
-                            offset="45%"
+                            offset="50%"
                             stop-color="#f3a9c5"/>
 
                         <stop
@@ -374,32 +176,18 @@ h1 {
 
                 </defs>
 
-
                 <path
                     d="
-                    M100 170
-                    C92 160 35 120 25 75
-                    C17 38 42 18 70 25
-                    C86 29 96 40 100 51
-                    C104 40 114 29 130 25
-                    C158 18 183 38 175 75
-                    C165 120 108 160 100 170
+                    M100 175
+                    C85 155 25 120 25 65
+                    C25 35 48 20 70 25
+                    C87 29 96 42 100 55
+                    C104 42 113 29 130 25
+                    C152 20 175 35 175 65
+                    C175 120 115 155 100 175
                     Z
                     "
-
-                    fill="url(#heartGradient)"
-                />
-
-
-                <!-- SHINE -->
-
-                <ellipse
-                    cx="65"
-                    cy="55"
-                    rx="12"
-                    ry="22"
-                    fill="rgba(255,255,255,0.35)"
-                    transform="rotate(-35 65 55)"
+                    fill="url(#pink)"
                 />
 
             </svg>
@@ -407,71 +195,18 @@ h1 {
         </div>
 
 
-        <!-- BUTTON -->
-
-        <button
-            class="open-btn"
-            onclick="openBook()">
-
+        <button>
             open the book ♡
-
         </button>
 
 
-        <div class="bottom-text">
+        <div class="bottom">
             a tiny book full of love ✧
         </div>
 
     </div>
 
 </div>
-
-
-<script>
-
-/* ===== BUAT BINTANG ===== */
-
-const stars = document.getElementById("stars");
-
-for (let i = 0; i < 65; i++) {
-
-    const star = document.createElement("span");
-
-    star.className = "star";
-
-    star.textContent =
-        Math.random() > 0.75
-        ? "✧"
-        : "·";
-
-    star.style.left =
-        Math.random() * 100 + "%";
-
-    star.style.top =
-        Math.random() * 100 + "%";
-
-    star.style.fontSize =
-        (7 + Math.random() * 11) + "px";
-
-    star.style.animationDelay =
-        Math.random() * 4 + "s";
-
-    star.style.animationDuration =
-        (2 + Math.random() * 4) + "s";
-
-    stars.appendChild(star);
-}
-
-
-/* ===== TOMBOL ===== */
-
-function openBook() {
-
-    alert("the book is waiting for you ♡");
-
-}
-
-</script>
 
 </body>
 </html>
