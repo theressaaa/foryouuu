@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For You</title>
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
@@ -19,22 +18,22 @@
 
 <body>
 
-    <!-- ================= AUDIO ================= -->
-
+    <!-- AUDIO -->
     <audio id="bgMusic" loop preload="auto">
         <source src="love.mp3" type="audio/mpeg">
     </audio>
 
 
-    <!-- ================= MUSIC BUTTON ================= -->
-
+    <!-- MUSIC BUTTON -->
     <button id="musicBtn" class="music-btn" onclick="toggleMusic()">
         <span class="music-icon">♫</span>
         <span id="musicText">Tap to Play Music ♫</span>
     </button>
 
 
-    <!-- ================= COVER ================= -->
+    <!-- =================================================
+         COVER
+    ================================================= -->
 
     <section id="cover" class="cover-page">
 
@@ -87,7 +86,9 @@
 
 
 
-    <!-- ================= BOOK ================= -->
+    <!-- =================================================
+         BOOK
+    ================================================= -->
 
     <section id="book" class="book-page">
 
@@ -98,9 +99,7 @@
 
             <div class="letter-card">
 
-                <div class="page-number">
-                    01
-                </div>
+                <div class="page-number">01</div>
 
                 <div class="moon"></div>
 
@@ -111,10 +110,7 @@
                     <span></span>
                 </div>
 
-                <div
-                    class="love-bubbles"
-                    id="bubbles1">
-                </div>
+                <div class="love-bubbles" id="bubbles1"></div>
 
                 <div class="birthday-content">
 
@@ -146,6 +142,7 @@
 
                 </div>
 
+
                 <div class="navigation">
 
                     <button
@@ -176,14 +173,9 @@
 
             <div class="letter-card">
 
-                <div class="page-number">
-                    02
-                </div>
+                <div class="page-number">02</div>
 
-                <div
-                    class="love-bubbles"
-                    id="bubbles2">
-                </div>
+                <div class="love-bubbles" id="bubbles2"></div>
 
                 <div class="moon"></div>
 
@@ -246,6 +238,7 @@
 
                 </div>
 
+
                 <div class="navigation">
 
                     <button
@@ -276,14 +269,9 @@
 
             <div class="letter-card">
 
-                <div class="page-number">
-                    03
-                </div>
+                <div class="page-number">03</div>
 
-                <div
-                    class="love-bubbles"
-                    id="bubbles3">
-                </div>
+                <div class="love-bubbles" id="bubbles3"></div>
 
                 <div class="moon"></div>
 
@@ -340,6 +328,7 @@
 
                 </div>
 
+
                 <div class="navigation">
 
                     <button
@@ -366,7 +355,9 @@
 
 
 
-    <!-- ================= JAVASCRIPT ================= -->
+    <!-- =================================================
+         JAVASCRIPT
+    ================================================= -->
 
     <script>
 
@@ -435,6 +426,10 @@
 
             event.preventDefault();
 
+            /*
+             * Klik pertama menjadi user interaction,
+             * jadi lagu bisa mulai dimainkan.
+             */
 
             if(music.paused){
 
